@@ -64,6 +64,10 @@ html, body {
 }
 
 /* || Sitewide || */
+body {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 header {
   text-align: center;
 }
@@ -83,6 +87,6 @@ header {
 }
 
 .home-nav-link {
-  font-size: 50px;
+  font-size: 2rem;
   color: rgba(255, 255, 255, 1);
 }
