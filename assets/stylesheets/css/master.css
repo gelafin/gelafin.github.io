@@ -77,6 +77,11 @@ header {
 }
 
 /* || Home Page || */
+.main-content-wrapper {
+  margin: auto;
+  max-width: 50%;
+}
+
 .home-nav li {
   border: 4px solid blue;
   border-radius: 3px;
