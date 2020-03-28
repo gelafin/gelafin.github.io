@@ -64,7 +64,17 @@ html, body {
 }
 
 /* || Sitewide || */
+header {
+  text-align: center;
+}
 
+.site-title {
+  font-size: 2rem;
+}
+
+.site-subtitle {
+  font-size: 1.5rem;
+}
 
 /* || Home Page || */
 .home-nav li {

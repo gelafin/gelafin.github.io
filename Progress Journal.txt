@@ -1,0 +1,11 @@
+3/28{
+format home header - 
+	center
+update font sizes - 
+	*2rem for nav titles and section titles (for other pages 	that 	have sections rather than big nav)
+	*1.5rem for subtitle
+	*2rem for site title for now
+set fonts
+	use a Google font
+}
+
