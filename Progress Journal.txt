@@ -7,5 +7,9 @@ update font sizes -
 	*2rem for site title for now
 set fonts
 	use a Google font
+format margins
+	center main content
+	add media query @600px
+
 }
 

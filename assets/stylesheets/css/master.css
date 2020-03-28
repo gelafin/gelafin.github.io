@@ -76,12 +76,24 @@ header {
   font-size: 2rem;
 }
 
-/* || Home Page || */
 .main-content-wrapper {
   margin: auto;
   max-width: 50%;
 }
 
+@media only screen and (max-width: 750px) {
+  .main-content-wrapper {
+    max-width: 70%
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .main-content-wrapper {
+    max-width: 90%
+  }
+}
+
+/* || Home Page || */
 .home-nav li {
   border: 4px solid blue;
   border-radius: 3px;
