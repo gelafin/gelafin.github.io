@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/assets/stylesheets/css/master.css">
+    <title>Article featuring the story of a bug fixed in my Python web scraper.
+        The robotexclusionrulesparser returns true for all pages and folders. It
+        even returns true for disallowed pages! My robotexclusionrulesparser went
+        from not working to fixed with these steps. Keyword stuffing is gross.
+    </title>
+  </head>
+  <body>
+    <h1 class="development-box">the great bug story of '19</h1>
+    <nav class="non-home-nav development-box">
+      <ul>
+        <li>
+          <div class="non-home-nav-link development-box">
+            <a target="_blank" href="https://gelafin.github.io/Carara/index">Play
+              Carara</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <article>
+      <h2>The Problem</h2>
+        <p><code>robotexclusionrulesparser.is_allowed()</code> returned true for 
+          blocked pages.
+        </p>
+      <h2>The Solution</h2>
+        <p>The solution is to just always pass in an absolute URL, since the 
+          <code>is_allowed()</code> function doesn't handle relative URLs. I don't 
+          understand the docs' explanation: "The scheme and authority are discarded 
+          from the URL when comparing it to robots.txt rules. (e.g. http://www.example.com/foo/bar.html 
+          becomes /foo/bar.html.) This is the way you want it to work -- the rules 
+          in robots.txt don't specify scheme and authority themselves, so one can't 
+          match against them."
+        </p>
+      <h2>The <em>Journey</em></h2>
+        <p>
+          "Robots.txt parser returns True for disallowed pages #21". I opened this
+          issue on Dec 1, 2019 and closed it on Dec 10, 2019. Those nine days contained 
+          my need to install VSCode, learn how an API works, and debug a debugger.
+        </p>
+        <p>
+          I was building a simple web scraper. Being a God-fearing type of individual, 
+          I accepted the etiquitte rule to honor a website's robots.txt. To help me do 
+          the parsing, I used a Python module called robotexclusionrulesparser, which 
+          had all the features I wanted and looked easy to use. It was easy to code the 
+          API function call; I just wrote <code>robotexclusionrulesparser.is_allowed
+          (my_bot_user_agent, page_to_crawl)</code>. However, when I tested it for a 
+          restricted page, it still returned true, telling me I was allowed to crawl it. 
+          This was an issue, so I made it an issue.
+        </p>
+        <p>
+          18 hard-earned comments later, I figured out that I needed to just always 
+          pass in an absolute URL. How do I know that? Well, first...
+        </p>
+        <img src="../assets/images/dec19bugstory/dec4returntrue.png" alt="screenshot of the issue comment on GitHub" title="Oh, but there's a sneaky default to return True in line 372, so maybe that executed because line 369 didn't execute. Will make sure if ruleset.does_user_agent_match(user_agent): returns true for at least one ruleset.">
+        <p>
+          I tried just opening up robotexclusionrulesparser.py and seeing what I could 
+          see. At that point, I wasn't yet comfortable using a debugger, so I used 
+          ctrl+f for "is_allowed", and just started reading. The first thing I noticed 
+          about the structure of the function was that it returned true by default, 
+          since there was a <code>return true</code> statement that would execute if 
+          execution bypassed a handful of if statements. However, that wasn't the cause 
+          of this bug. On further inspection, I saw that is_allowed()'s if statements 
+          checked only whether the bot name were included in the robots.txt, 
+        </p>
+        <img src="../assets/images/dec19bugstory/dec4robotname.png" alt="screenshot of the issue comment on GitHub" title="does_user-agent_match() does return true bc of (robot_name == '*') so is_allowed() doesn't just fall through to the sneaky default return True but instead does execute return ruleset.is_url_allowed(url, syntax).">
+        <p>
+          Next 
+        </p>
+    </article>
+  </body>
+</html>
