@@ -10,6 +10,6 @@ set fonts
 format margins
 	center main content
 	add media query @600px
-
+set vertical spacing
 }
 
