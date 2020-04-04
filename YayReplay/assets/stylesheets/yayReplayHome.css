@@ -1,9 +1,5 @@
-.flex-container {
-  display: flex;
-}
-
-.flat-header {
-  flex-flow: row nowrap;
+.site-subtitle {
+  display: inline-block;
 }
 
 #yr-site-title {
