@@ -1,3 +1,11 @@
+.flex-container {
+  display: flex;
+}
+
+.flat-header {
+  flex-flow: row nowrap;
+}
+
 #yr-site-title {
   font-family: 'Fredoka One', cursive;
 }
