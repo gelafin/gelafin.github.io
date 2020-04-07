@@ -35,7 +35,7 @@ for some reason external file can't find elements even after document.onload-->
     <script>
       function uploadPlayData(iterations){
         var container = document.getElementById('play-data-container');
-        for (let index; index >= iterations; index++){
+        for (let index = 0; index >= iterations; index++){
           let newDiv = document.createElement('div');
           newDiv.innerHTML = 'test text!';
           container.appendChild(newDiv);
