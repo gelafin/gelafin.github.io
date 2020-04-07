@@ -5,7 +5,8 @@
     <link rel="stylesheet" href="../assets/stylesheets/css/master.css">
     <link rel="stylesheet" href="assets/stylesheets/yayReplayHome.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap">
-    <script type="text/javascript" src="js/playDataUpload.js"></script>
+<!--    <script type="text/javascript" src="js/playDataUpload.js"></script>
+for some reason external file can't find elements even after document.onload-->
     <title>YayReplay Home
     </title>
   </head>
@@ -30,6 +31,16 @@
 
     <div id="play-data-container">
     </div>
+    <script>
+      function uploadPlayData(){
+        var container = document.getElementById('play-data-container');
+        var newDiv = document.createElement('div');
+        newDiv.innerHTML = 'test text!';
+        container.appendChild(newDiv);
+      }
+
+      document.onload = uploadPlayData();
+    </script>
 
   </body>
 </html>
