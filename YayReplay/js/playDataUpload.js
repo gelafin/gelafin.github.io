@@ -1,3 +1,5 @@
+import Papa from 'papaparse';
+
 function uploadPlayData(iterations){
   var container = document.getElementById('play-data-container');
 
