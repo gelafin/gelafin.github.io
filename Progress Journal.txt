@@ -20,3 +20,7 @@ YayReplay css is not loading. It worked once, added to it, now doesn't work. Did
 4/4 {
 YayReplay css path was still not right. Fixed. Also removed a duplicate css file.
 }
+
+4/6 {
+JS test didn't work. Chrome said var target was null, which means querySelector() didn't work. Will check querySelector() on MDN or else use different tutorial.
+}
