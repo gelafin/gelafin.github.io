@@ -31,15 +31,19 @@ for some reason external file can't find elements even after document.onload-->
 
     <div id="play-data-container">
     </div>
+
     <script>
-      function uploadPlayData(){
+      function uploadPlayData(iterations){
         var container = document.getElementById('play-data-container');
-        var newDiv = document.createElement('div');
-        newDiv.innerHTML = 'test text!';
-        container.appendChild(newDiv);
+        for (let index; index >= iterations; index++){
+          let newDiv = document.createElement('div');
+          newDiv.innerHTML = 'test text!';
+          container.appendChild(newDiv);
+        }
       }
 
-      document.onload = uploadPlayData();
+      iterations = 4;
+      document.onload = uploadPlayData(iterations);
     </script>
 
   </body>
