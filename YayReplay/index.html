@@ -35,7 +35,8 @@ for some reason external file can't find elements even after document.onload-->
     <script>
       function uploadPlayData(iterations){
         var container = document.getElementById('play-data-container');
-        for (let index = 0; index <= iterations; index++){
+
+        for (let index = 1; index <= iterations; index++){
           let newDiv = document.createElement('div');
           newDiv.innerHTML = 'test text!';
           container.appendChild(newDiv);
@@ -44,6 +45,21 @@ for some reason external file can't find elements even after document.onload-->
 
       iterations = 4;
       document.onload = uploadPlayData(iterations);
+    </script>
+
+    <!-- test for Papaparse in console before adding to upload function -->
+    <script>
+      var data;
+
+      Papa.parse('../../play-store-scraper/PlayAppData.csv', {
+        header: true,
+        download: true,
+        dynamicTyping: true,
+        complete: function(results) {
+          console.log(results);
+          data = results.data;
+        }
+      });
     </script>
 
   </body>
