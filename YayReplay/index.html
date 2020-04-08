@@ -5,9 +5,6 @@
     <link rel="stylesheet" href="../assets/stylesheets/css/master.css">
     <link rel="stylesheet" href="assets/stylesheets/yayReplayHome.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap">
-<!--    <script type="text/javascript" src="js/playDataUpload.js"></script>
-for some reason external file can't find elements even after document.onload-->
-    <script src="js/PapaParse-5.0.2/papaparse.min.js"></script>
     <title>YayReplay Home
     </title>
   </head>
@@ -32,36 +29,7 @@ for some reason external file can't find elements even after document.onload-->
 
     <div id="play-data-container">
     </div>
-
-    <script>
-      function uploadPlayData(iterations){
-        var container = document.getElementById('play-data-container');
-
-        for (let index = 1; index <= iterations; index++){
-          let newDiv = document.createElement('div');
-          newDiv.innerHTML = 'test text!';
-          container.appendChild(newDiv);
-        }
-      }
-
-      iterations = 4;
-      document.onload = uploadPlayData(iterations);
-    </script>
-
-    <!-- test for Papaparse in console before adding to upload function -->
-    <script>
-      var data;
-
-      Papa.parse('../../play-store-scraper/PlayAppData.csv', {
-        header: true,
-        download: true,
-        dynamicTyping: true,
-        complete: function(results) {
-          console.log(results);
-          data = results.data;
-        }
-      });
-    </script>
+    <script type="text/javascript" src="js/playDataUpload.js"></script>
 
   </body>
 </html>

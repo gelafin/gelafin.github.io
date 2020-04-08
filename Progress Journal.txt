@@ -24,3 +24,14 @@ YayReplay css path was still not right. Fixed. Also removed a duplicate css file
 4/6 {
 JS test didn't work. Chrome said var target was null, which means querySelector() didn't work. Will check querySelector() on MDN or else use different tutorial.
 }
+
+4/7{
+JS test worked. Trying to set up Babel so simple import statement will work in js file. Could use the ES5 version like require(), but Tim said it's cooler and should be done.
+
+Progress: "npm run build" command completed successfully.
+At: https://babeljs.io/setup#installation step 4 (using CLI).
+
+Note: May also be helpful to finish guide at https://wesbos.com/javascript-modules/
+
+Note: Tim also recommends Webpack, but idk if necessary.
+}
