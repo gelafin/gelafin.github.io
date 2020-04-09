@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "babel js -d lib"
+    "build": "babel js -d lib",
+    "start": "node --experimental-modules ./js/playDataUpload.js"
   },
   "keywords": [],
   "author": "",
