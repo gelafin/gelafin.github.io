@@ -7,7 +7,4 @@
   "author": "",
   "license": "ISC",
   "type": "module",
-  "dependencies": {
-    "require": "^2.4.20"
-  }
 }
