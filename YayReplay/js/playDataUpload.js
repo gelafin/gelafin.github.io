@@ -1,4 +1,4 @@
-import Papa from 'papaparse';
+const Papa = require('papaparse');
 
 function uploadPlayData(iterations){
   var container = document.getElementById('play-data-container');
