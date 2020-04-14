@@ -1,27 +1,20 @@
 /* papaparse imported using script tag */
 
-function uploadPlayData(iterations){
+function uploadPlayData(data){
   var container = document.getElementById('play-data-container');
 
-  for (let index = 1; index <= iterations; index++){
+  for (const row of data){
     let newDiv = document.createElement('div');
-    newDiv.innerHTML = 'test text!';
+    newDiv.innerHTML = row;
     container.appendChild(newDiv);
   }
 }
 
-iterations = 4;
-document.onload = uploadPlayData(iterations);
+var results;
 
-/* test for Papaparse in console before adding to upload function */
-var data;
-
-Papa.parse('./assets/PlayAppData.csv', {
-  header: true,
-  download: true,
-  dynamicTyping: true,
-  complete: function(results) {
-    console.log(results);
-    data = results.data;
-  }
-});
+document.onload = Papa.parse('./assets/PlayAppData.csv', {
+                    header: true,
+                    download: true,
+                    dynamicTyping: true,
+                    complete: uploadPlayData(results)
+                  });
