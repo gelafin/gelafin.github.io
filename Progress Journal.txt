@@ -35,3 +35,27 @@ Note: May also be helpful to finish guide at https://wesbos.com/javascript-modul
 
 Note: Tim also recommends Webpack, but idk if necessary.
 }
+
+4/8{
+still get "Uncaught SyntaxError: Cannot use import statement outside a module". SO said just add "type": "module" to package.json but that didn't fix it.
+}
+
+4/9{
+realized the Babel setup guide wasn't completed yet. Made .babelrc to enable the preset-env, but that also didn't work. Maybe will have to add a start script like SO says here: https://stackoverflow.com/questions/58805918/why-node-js-ignores-the-type-setting-in-the-package-json-file. That didn't work either.
+
+Tim says it's too hard to troubleshoot, just use old style.
+}
+
+4/10{
+reverted repo and noticed node_modules was tiny because untracked. Will just delete node_modules and reinstall node and Papaparse. Deleted node_modules but still says I have npm installed globally. Don't remember how to install npm locally
+}
+
+4/11{
+working commit 1565afc copied all of papaparse/ into js/ and used script tag in html to load js/papaparse/papaparse.min.js. Since people say not to use the actual path for security, will look into dep-linker later.
+
+Progress: time to fix the csv writerow bug :). Once there is something consistent to upload, need to either copy the whole database to the GitHub Pages folder or change the path in the step that saves to csv, so the database is just kept in the GP folder instead of the scraper folder.
+}
+
+4/14{
+fixed writerow bug in scraper and also got scraper.py to write to the database in YayReplay's assets folder. Ready to parse.
+}

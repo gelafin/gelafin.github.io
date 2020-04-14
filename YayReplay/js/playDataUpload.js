@@ -16,7 +16,7 @@ document.onload = uploadPlayData(iterations);
 /* test for Papaparse in console before adding to upload function */
 var data;
 
-Papa.parse('../../play-store-scraper/PlayAppData.csv', {
+Papa.parse('../assets/PlayAppData.csv', {
   header: true,
   download: true,
   dynamicTyping: true,
