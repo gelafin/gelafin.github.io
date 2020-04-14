@@ -58,4 +58,7 @@ Progress: time to fix the csv writerow bug :). Once there is something consisten
 
 4/14{
 fixed writerow bug in scraper and also got scraper.py to write to the database in YayReplay's assets folder. Ready to parse.
+
+File paths in js files are relative to the html file their script tag is in. That would have taken a while without Tim.
+
 }
