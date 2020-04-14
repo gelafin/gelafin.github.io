@@ -10,8 +10,6 @@ function uploadPlayData(parsedObject){
   }
 }
 
-var results;
-
 document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     header: true,
                     download: true,
