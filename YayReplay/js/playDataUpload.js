@@ -13,6 +13,14 @@ function uploadPlayData(parsedObject){
         continue; // don't print id
       }
 
+      if (column === 'link') {
+        let newColumnDiv = document.createElement('a');
+        newColumnDiv.innerHTML = 'see on Google Play';
+        newColumnDiv.title = 'see on Google Play';
+        newColumnDiv.href = gameRow[column];
+        newRowDiv.appendChild(newColumnDiv);
+      }
+
       let newColumnDiv = document.createElement('div'); // row of children
       newColumnDiv.innerHTML = gameRow[column];
       newColumnDiv.className = 'game-column';
