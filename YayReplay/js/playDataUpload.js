@@ -1,14 +1,34 @@
 /* papaparse imported using script tag */
 
+function createRowDivInside(containerClass){
+  var container = document.getElementById(containerClass);
+  let newRowDiv = document.createElement('div'); // create element with flex-flow: row nowrap using .className assignment
+  newRowDiv.className = 'flexbox-container game-row';
+  container.appendChild(newRowDiv); // new empty div to keep children in a row
+  return newRowDiv;
+}
+
+function printHeaders(parsedObject){
+  var newRowDiv = createRowDivInside('play-data-container');
+
+  for (const column of parsedObject.meta.fields){
+    let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
+    newColumnDiv.innerHTML = column;
+    newColumnDiv.className = 'game-column';
+    newRowDiv.appendChild(newColumnDiv);
+  }
+}
+
 function uploadPlayData(parsedObject){
-  var container = document.getElementById('play-data-container');
+//  var container = document.getElementById('play-data-container');
 
   for (const gameRow of parsedObject.data){
-    let newRowDiv = document.createElement('div'); // create element with flex-flow: row nowrap using .className assignment
-    newRowDiv.className = 'flexbox-container game-row';
-    container.appendChild(newRowDiv); // new empty div to keep children in a row
+    let newRowDiv = createRowDivInside('play-data-container');
+//    let newRowDiv = document.createElement('div');
+//    newRowDiv.className = 'flexbox-container game-row';
+//  container.appendChild(newRowDiv); // new empty div to keep children in a row
 
-    for (column of parsedObject.meta.fields){
+    for (const column of parsedObject.meta.fields){
       if (column === 'id') {
         continue; // don't print id
       } else if (column === 'link') {
