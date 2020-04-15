@@ -73,5 +73,5 @@ New progress: use f12 to set equal width either with max-width % or max-width px
 4/15{
 setting margin-right px on the child divs works.
 
-Progress: headers, anchors should link and say "link to Play page", don't print id (done).
+Progress: headers, anchors should link and say "link to Play page" (done), don't print id (done).
 }
