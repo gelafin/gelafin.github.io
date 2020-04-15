@@ -75,5 +75,7 @@ setting margin-right px on the child divs works.
 
 Progress: headers (done), anchors should link and say "link to Play page" (done), don't print id (done).
 
-Progress: format headers so they are the same width as the below divs. Maybe use table tag instead of flexbox. No, will make the header columns into flex containers and not apply row spacing to data (but that might throw off vertical alignment). Target blank the links.
+Progress: format headers so they are the same width as the below divs. Maybe use table tag instead of flexbox. No, will make the header columns into flex containers and not apply row spacing to data (but that might throw off vertical alignment). Actually, best to get pictures before deciding, because that will play a large part. 
+
+Target blank the links.
 }
