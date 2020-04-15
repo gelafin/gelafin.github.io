@@ -3,6 +3,13 @@
   padding: 6px;
 }
 
+.game-column {
+  margin-right: 12px;
+  max-width: 15%;
+  min-width: 30px;
+  overflow: hidden;
+}
+
 #yr-site-title {
   font-family: 'Fredoka One', cursive;
 }

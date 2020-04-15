@@ -65,5 +65,13 @@ Tim also helped with callback function. Better to pass a reference to the functi
 
 It's alive for the first time, showing scraped data on the web page.
 
-Progress: parsedObject.data returns array of rows. For some reason, it gets an extra null row, so might work around for now by adding a check if the row is null before creating its element. ParsedObject.errors is showing FieldMismatch: TooFewFields.
+Progress: parsedObject.data returns array of rows. For some reason, it gets an extra null row, so might work around for now by adding a check if the row is null before creating its element. ParsedObject.errors is showing FieldMismatch: TooFewFields. Fixed by adding a config argument.
+
+New progress: use f12 to set equal width either with max-width % or max-width px or (on container) justify-content space-evenly. Then, add a function to print the headers. Then, add something to set the element of links to anchors instead of div after main loop (or at worst use if in main loop).
+}
+
+4/15{
+setting margin-right px on the child divs works.
+
+Progress: headers, anchors should link and say "link to Play page", don't print id.
 }

@@ -11,6 +11,7 @@ function uploadPlayData(parsedObject){
     for (column of parsedObject.meta.fields){
       let newColumnDiv = document.createElement('div'); // row of children
       newColumnDiv.innerHTML = gameRow[column];
+      newColumnDiv.className = 'game-column';
       newRowDiv.appendChild(newColumnDiv);
     }
   }
