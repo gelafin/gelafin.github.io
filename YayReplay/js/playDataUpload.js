@@ -9,24 +9,23 @@ function createRowDivInside(containerClass){
 }
 
 function printHeaders(parsedObject){
-  var newRowDiv = createRowDivInside('play-data-container');
+  if (column === 'id') {
+    continue; // don't print id
+  } else {
+    var newRowDiv = createRowDivInside('play-data-container');
 
-  for (const column of parsedObject.meta.fields){
-    let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
-    newColumnDiv.innerHTML = column;
-    newColumnDiv.className = 'game-column';
-    newRowDiv.appendChild(newColumnDiv);
+    for (const column of parsedObject.meta.fields){
+      let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
+      newColumnDiv.innerHTML = column;
+      newColumnDiv.className = 'game-column';
+      newRowDiv.appendChild(newColumnDiv);
+    }
   }
 }
 
 function uploadPlayData(parsedObject){
-//  var container = document.getElementById('play-data-container');
-
   for (const gameRow of parsedObject.data){
     let newRowDiv = createRowDivInside('play-data-container');
-//    let newRowDiv = document.createElement('div');
-//    newRowDiv.className = 'flexbox-container game-row';
-//  container.appendChild(newRowDiv); // new empty div to keep children in a row
 
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {
