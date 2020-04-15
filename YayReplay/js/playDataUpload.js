@@ -9,6 +9,10 @@ function uploadPlayData(parsedObject){
     container.appendChild(newRowDiv); // new empty div to keep children in a row
 
     for (column of parsedObject.meta.fields){
+      if (column === 'id') {
+        continue; // don't print id
+      }
+
       let newColumnDiv = document.createElement('div'); // row of children
       newColumnDiv.innerHTML = gameRow[column];
       newColumnDiv.className = 'game-column';
