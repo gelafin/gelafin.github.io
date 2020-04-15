@@ -19,6 +19,7 @@ function uploadPlayData(parsedObject){
         newColumnDiv.title = 'see on Google Play';
         newColumnDiv.href = gameRow[column];
         newRowDiv.appendChild(newColumnDiv);
+        continue;
       }
 
       let newColumnDiv = document.createElement('div'); // row of children
