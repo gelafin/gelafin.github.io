@@ -9,16 +9,16 @@ function createRowDivInside(containerClass){
 }
 
 function printHeaders(parsedObject){
-  if (column === 'id') {
-    continue; // don't print id
-  } else {
-    var newRowDiv = createRowDivInside('play-data-container');
+  var newRowDiv = createRowDivInside('play-data-container');
 
-    for (const column of parsedObject.meta.fields){
-      let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
-      newColumnDiv.innerHTML = column;
-      newColumnDiv.className = 'game-column';
-      newRowDiv.appendChild(newColumnDiv);
+  for (const column of parsedObject.meta.fields){
+    if (column === 'id') {
+      continue; // don't print id
+    } else {
+        let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
+        newColumnDiv.innerHTML = column;
+        newColumnDiv.className = 'game-column';
+        newRowDiv.appendChild(newColumnDiv);
     }
   }
 }
