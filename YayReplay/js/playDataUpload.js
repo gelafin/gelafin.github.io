@@ -54,6 +54,8 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     download: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
-                    complete: {printHeaders,
-                              uploadPlayData}
+                    complete: function() {
+                      printHeaders(results);
+                      uploadPlayData(results);
+                    }
                   });
