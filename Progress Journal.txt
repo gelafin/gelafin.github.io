@@ -62,4 +62,8 @@ fixed writerow bug in scraper and also got scraper.py to write to the database i
 File paths in js files are relative to the html file their script tag is in. That would have taken a while without Tim.
 
 Tim also helped with callback function. Better to pass a reference to the function parse(functionName) instead of calling it from inside like parse(functionName(data)). Yes, Papaparse secretly passes results as an argument to functionName when it calls back. The other examples with paretheses were all anonymous, which is why that worked.
+
+It's alive for the first time, showing scraped data on the web page.
+
+Progress: parsedObject.data returns array of rows. For some reason, it gets an extra null row, so might work around for now by adding a check if the row is null before creating its element. ParsedObject.errors is showing FieldMismatch: TooFewFields.
 }
