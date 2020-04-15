@@ -11,23 +11,19 @@ function uploadPlayData(parsedObject){
     for (column of parsedObject.meta.fields){
       if (column === 'id') {
         continue; // don't print id
-      }
-
-      elif (column === 'link') {
-        let newColumnDiv = document.createElement('a');
-        newColumnDiv.innerHTML = 'see on Google Play';
-        newColumnDiv.title = 'see on Google Play';
-        newColumnDiv.href = gameRow[column];
-        newColumnDiv.className = 'game-column';
-        newRowDiv.appendChild(newColumnDiv);
-        continue;
-      }
-
-      else {
-        let newColumnDiv = document.createElement('div'); // row of children
-        newColumnDiv.innerHTML = gameRow[column];
-        newColumnDiv.className = 'game-column';
-        newRowDiv.appendChild(newColumnDiv);
+      } else if (column === 'link') {
+          let newColumnDiv = document.createElement('a');
+          newColumnDiv.innerHTML = 'see on Google Play';
+          newColumnDiv.title = 'see on Google Play';
+          newColumnDiv.href = gameRow[column];
+          newColumnDiv.className = 'game-column';
+          newRowDiv.appendChild(newColumnDiv);
+          continue;
+      } else {
+          let newColumnDiv = document.createElement('div'); // row of children
+          newColumnDiv.innerHTML = gameRow[column];
+          newColumnDiv.className = 'game-column';
+          newRowDiv.appendChild(newColumnDiv);
       }
     }
   }
