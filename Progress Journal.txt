@@ -77,5 +77,7 @@ Progress: headers (done), anchors should link and say "link to Play page" (done)
 
 Progress: format headers so they are the same width as the below divs. Maybe use table tag instead of flexbox. No, will make the header columns into flex containers and not apply row spacing to data (but that might throw off vertical alignment). Actually, best to get pictures before deciding, because that will play a large part. One good point is that tables are more semantic than flexbox.
 
-Target blank the links.
+Target blank the links. (done)
+
+Progress: add pictures
 }

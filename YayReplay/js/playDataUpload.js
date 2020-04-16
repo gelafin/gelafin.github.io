@@ -12,7 +12,7 @@ function printHeaders(parsedObject){
   var newRowDiv = createRowDivInside('play-data-container');
 
   for (const column of parsedObject.meta.fields){
-    if (column === 'id') {
+    if (column === 'id' || column === 'image') {
       continue; // don't print id
     } else {
         let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
@@ -39,6 +39,11 @@ function uploadPlayData(parsedObject){
           newColumnDiv.className = 'game-column';
           newRowDiv.appendChild(newColumnDiv);
           continue;
+      } else if (column === 'image') {
+          let newColumnDiv = document.createElement('img');
+          newColumnDiv.src = gameRow[column];
+          newColumnDiv.className = 'game-column';
+          newRowDiv.appendChild(newColumnDiv);
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
           newColumnDiv.innerHTML = gameRow[column];
