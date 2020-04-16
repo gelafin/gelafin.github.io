@@ -1,5 +1,6 @@
 .game-row {
   flex-flow: row nowrap;
+  align-items: center;
   padding: 6px;
 }
 
@@ -8,6 +9,10 @@
   max-width: 15%;
   min-width: 30px;
   overflow: hidden;
+}
+
+.game-image {
+  width: 110px;
 }
 
 #yr-site-title {

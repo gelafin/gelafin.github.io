@@ -13,7 +13,7 @@ function printHeaders(parsedObject){
 
   for (const column of parsedObject.meta.fields){
     if (column === 'id' || column === 'image') {
-      continue; // don't print id
+      continue; // don't print id or image in column titles
     } else {
         let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
         newColumnDiv.innerHTML = column;

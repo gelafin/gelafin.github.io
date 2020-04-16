@@ -79,5 +79,5 @@ Progress: format headers so they are the same width as the below divs. Maybe use
 
 Target blank the links. (done)
 
-Progress: add pictures
+Progress: add pictures. Done.
 }
