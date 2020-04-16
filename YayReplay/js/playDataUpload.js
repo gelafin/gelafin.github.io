@@ -42,7 +42,7 @@ function uploadPlayData(parsedObject){
       } else if (column === 'image') {
           let newColumnDiv = document.createElement('img');
           newColumnDiv.src = gameRow[column];
-          newColumnDiv.className = 'game-column';
+          newColumnDiv.className = 'game-column game-image';
           newRowDiv.appendChild(newColumnDiv);
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
