@@ -80,4 +80,14 @@ Progress: format headers so they are the same width as the below divs. Maybe use
 Target blank the links. (done)
 
 Progress: add pictures. Done.
+
+New Progress: scrape genre next, because that will affect layout.
+
+layout: organize blocks of each genre. Pray Pray says each game should only show picture, price, rating. The rest will be revealed with expanding arrow (or something that keeps user on page) if you click the picture.
+}
+
+4/16{
+layout goal: very simple table and media query, no flexbox needed. Will organize blocks by genre and have basic button to reveal preview images and details. Will reorder dict before writing to csv so elements are in order.
+
+Will create invisible rows below each gameRow to hold screenshots and video.
 }

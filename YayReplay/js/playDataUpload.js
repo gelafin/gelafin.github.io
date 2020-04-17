@@ -12,8 +12,9 @@ function printHeaders(parsedObject){
   var newRowDiv = createRowDivInside('play-data-container');
 
   for (const column of parsedObject.meta.fields){
-    if (column === 'id' || column === 'image') {
-      continue; // don't print id or image in column titles
+    if (column === 'id' || column === 'image' || column === 'video' ||
+    column === 'previewImageList') {
+      continue; // don't print these column titles
     } else {
         let newColumnDiv = document.createElement('div'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
         newColumnDiv.innerHTML = column;
@@ -26,6 +27,7 @@ function printHeaders(parsedObject){
 function uploadPlayData(parsedObject){
   for (const gameRow of parsedObject.data){
     let newRowDiv = createRowDivInside('play-data-container');
+    let newRowDivHidden = createRowDivInside('play-data-container');
 
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {
@@ -44,6 +46,12 @@ function uploadPlayData(parsedObject){
           newColumnDiv.src = gameRow[column];
           newColumnDiv.className = 'game-column game-image';
           newRowDiv.appendChild(newColumnDiv);
+      } else if (column === 'video') {
+          if (gameRow[column] != 'none') {
+            let newColumnDiv = document.createElement('iframe');
+            newColumnDiv.src = gameRow[column];
+            newColumnDiv.className = 'gameVideo';
+          }
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
           newColumnDiv.innerHTML = gameRow[column];
