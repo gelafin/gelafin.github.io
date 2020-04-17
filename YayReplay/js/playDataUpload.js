@@ -3,7 +3,6 @@
 function createRowDivInside(containerClass){
   var container = document.getElementById(containerClass);
   let newRowDiv = document.createElement('div'); // create element with flex-flow: row nowrap using .className assignment
-  newRowDiv.className = 'flexbox-container game-row';
   container.appendChild(newRowDiv); // new empty div to keep children in a row
   return newRowDiv;
 }
@@ -28,6 +27,8 @@ function uploadPlayData(parsedObject){
   for (const gameRow of parsedObject.data){
     let newRowDiv = createRowDivInside('play-data-container');
     let newRowDivHidden = createRowDivInside('play-data-container');
+    newRowDiv.className = 'flexbox-container game-row';
+    newRowDivHidden.className = 'flexbox-container game-row'; // add hidden util class when ready
 
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {
@@ -48,9 +49,14 @@ function uploadPlayData(parsedObject){
           newRowDiv.appendChild(newColumnDiv);
       } else if (column === 'video') {
           if (gameRow[column] != 'none') {
-            let newColumnDiv = document.createElement('iframe');
-            newColumnDiv.src = gameRow[column];
-            newColumnDiv.className = 'gameVideo';
+            console.log('adding video...');
+            console.log('video link: ', gameRow[column]);
+            let newIframe = document.createElement('iframe');
+            newIframe.src = gameRow[column];
+            newIframe.className = 'gameVideo';
+            console.log('new Iframe: ', newIframe);
+            newRowDivHidden.appendChild(newIframe);
+            console.log('newRowDivHidden');
           }
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
