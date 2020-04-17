@@ -56,7 +56,7 @@ function uploadPlayData(parsedObject){
           }
       } else if (column === 'previewImageList') {
           // makes new img element for each. uris are separated by comma
-          previewImages = gameRow[column].split(',');
+          previewImages = gameRow[column].split(', ');
           for (const uri of previewImages) {
             let newImgTag = document.createElement('img');
             newImgTag.src = uri;
