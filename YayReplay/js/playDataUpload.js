@@ -62,6 +62,8 @@ function uploadPlayData(parsedObject){
             newImgTag.src = uri;
             newImgTag.className = 'preview-image';
             newRowDivHidden.appendChild(newImgTag);
+            console.log('testing preview images list... ', previewImages);
+            console.log('testing preview image tag... ', newImgTag);
           }
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
