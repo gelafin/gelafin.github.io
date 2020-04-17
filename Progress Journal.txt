@@ -93,3 +93,10 @@ Will create invisible rows below each gameRow to hold screenshots and video. Don
 
 new progress: 1) reorder dict 2) load one table of 5 results per genre. If user clicks details arrow button, hiddenDiv items are loaded for that game only.
 }
+
+4/17{
+progress: 1) reorder dict 2) if rating reasons is learn more don't print it.
+
+3) load one table of 5 results per genre. If user clicks details arrow button, hiddenDiv items are loaded for that game only.
+
+}
