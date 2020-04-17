@@ -28,7 +28,7 @@ function uploadPlayData(parsedObject){
     let newRowDiv = createRowDivInside('play-data-container');
     let newRowDivHidden = createRowDivInside('play-data-container');
     newRowDiv.className = 'flexbox-container game-row';
-    newRowDivHidden.className = 'flexbox-container game-row'; // add hidden util class when ready
+    newRowDivHidden.className = 'flexbox-container game-row'; // everything below that goes in this div should be loaded only after button press
 
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {

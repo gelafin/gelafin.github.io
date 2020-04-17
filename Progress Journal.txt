@@ -87,7 +87,9 @@ layout: organize blocks of each genre. Pray Pray says each game should only show
 }
 
 4/16{
-layout goal: very simple table and media query, no flexbox needed. Will organize blocks by genre and have basic button to reveal preview images and details. Will reorder dict before writing to csv so elements are in order.
+layout goal: very simple table and media query, no flexbox needed. Will organize blocks by genre and have basic button to load preview images and details. Will reorder dict before writing to csv so elements are in order.
 
-Will create invisible rows below each gameRow to hold screenshots and video.
+Will create invisible rows below each gameRow to hold screenshots and video. Done.
+
+new progress: 1) reorder dict 2) load one table of 5 results per genre. If user clicks details arrow button, hiddenDiv items are loaded for that game only.
 }
