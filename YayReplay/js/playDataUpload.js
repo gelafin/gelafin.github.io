@@ -43,20 +43,25 @@ function uploadPlayData(parsedObject){
           newRowDiv.appendChild(newColumnDiv);
           continue;
       } else if (column === 'image') {
-          let newColumnDiv = document.createElement('img');
-          newColumnDiv.src = gameRow[column];
-          newColumnDiv.className = 'game-column game-image';
-          newRowDiv.appendChild(newColumnDiv);
+          let newImg = document.createElement('img');
+          newImg.src = gameRow[column];
+          newImg.className = 'game-column game-image';
+          newRowDiv.appendChild(newImg);
       } else if (column === 'video') {
           if (gameRow[column] != 'none') {
-            console.log('adding video...');
-            console.log('video link: ', gameRow[column]);
             let newIframe = document.createElement('iframe');
             newIframe.src = gameRow[column];
-            newIframe.className = 'gameVideo';
-            console.log('new Iframe: ', newIframe);
+            newIframe.className = 'game-video';
             newRowDivHidden.appendChild(newIframe);
-            console.log('newRowDivHidden');
+          }
+      } else if (column === 'previewImageList') {
+          // makes new img element for each. uris are separated by comma
+          previewImages = gameRow[column].split(',');
+          for (const uri of previewImages) {
+            let newImgTag = document.createElement('img');
+            newImgTag.src = uri;
+            newImgTag.className = 'preview-image';
+            newRowDivHidden.appendChild(newImgTag);
           }
       } else {
           let newColumnDiv = document.createElement('div'); // row of children
