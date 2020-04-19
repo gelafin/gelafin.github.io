@@ -72,23 +72,24 @@ function printHeaders(parsedObject){
 }
 
 function uploadPlayData(parsedObject){
-  var beginHiddenItems = false;
+  for (gameRow of parsedObject.data) {
+    var beginHiddenItems = false;
 
-  for (const column of parsedObject.meta.fields){
-    if (beginHiddenItems) {
-      var newRowDivHidden = createElementInside('div', 'game-data-container');
-      newRowDivHidden.className = 'flexbox-container game-details hidden';
-    }
+    for (const column of parsedObject.meta.fields){
+      if (beginHiddenItems) {
+        var newRowDivHidden = createElementInside('div', 'game-data-container');
+        newRowDivHidden.className = 'flexbox-container game-details hidden';
+      }
 
-    if (column === 'id') {
-      continue; // don't print id
-    } else if (column === 'image') {
+      if (column === 'id') {
+        continue; // don't print id
+      } else if (column === 'image') {
         let newImg = document.createElement('img');
         newImg.src = gameRow[column];
         newImg.className = 'game-data-item game-image';
         document.getElementById('game-image-column').appendChild(newImg);
         continue; // short-circuit for efficiency
-    } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+      } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
         let newColumnDiv = document.createElement('div');
         newColumnDiv.innerHTML = gameRow[column];
         newColumnDiv.className = 'game-data-item';
@@ -97,10 +98,10 @@ function uploadPlayData(parsedObject){
           beginHiddenItems = true;
         }
         continue;
-    } else { // it's a hidden details item
+      } else { // it's a hidden details item
         // TODO: Once search is ready, make hidden items load in a separate function called by button
         // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
-        if (column === 'video') {
+          if (column === 'video') {
             if (gameRow[column] != 'none') {
               let newIframe = document.createElement('iframe');
               newIframe.src = gameRow[column];
@@ -108,7 +109,7 @@ function uploadPlayData(parsedObject){
               newRowDivHidden.appendChild(newIframe);
             }
             continue;
-        } else if (column === 'previewImageList') {
+          } else if (column === 'previewImageList') {
             // makes new img element for each. uris are separated by comma
             previewImages = gameRow[column].split(', ');
             for (const uri of previewImages) {
@@ -118,7 +119,7 @@ function uploadPlayData(parsedObject){
               newRowDivHidden.appendChild(newImgTag);
             }
             continue;
-        } else if (column === 'link') {
+          } else if (column === 'link') {
             let newAnchor = document.createElement('a');
             newAnchor.innerHTML = 'Google Play page';
             newAnchor.title = 'Google Play page';
@@ -127,11 +128,12 @@ function uploadPlayData(parsedObject){
             newAnchor.className = 'game-data-item';
             newRowDivHidden.appendChild(newAnchor);
             continue;
-        } else { // text-only hidden details item
+          } else { // text-only hidden details item
             let newDiv = document.createElement('div');
             newDiv.innerHTML = gameRow[column];
             newRowDivHidden.appendChild(newDiv);
-        }
+          }
+      }
     }
   }
 }
@@ -141,5 +143,5 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     download: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
-                    step: uploadPlayData
+                    chunk: uploadPlayData
                   });
