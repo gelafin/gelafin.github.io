@@ -1,18 +1,30 @@
-.game-row {
-  flex-flow: row nowrap;
-  align-items: center;
-  padding: 6px;
+:root {
+  --row-height: 100px;
 }
 
 .game-column {
-  margin-right: 12px;
+  flex-flow: column nowrap;
   max-width: 15%;
-  min-width: 30px;
-  overflow: hidden;
+  min-width: 50px;
+  margin-right: 12px;
+}
+
+.game-column-header {
+  height: 1.5rem;
+}
+
+.game-data-item {
+  height: var(--row-height)
+}
+
+.game-details {
+  position: relative;
+  top: var(--row-height);
+  z-index: -1;
 }
 
 .game-image {
-  width: 110px;
+  height: 100px;
 }
 
 #yr-site-title {

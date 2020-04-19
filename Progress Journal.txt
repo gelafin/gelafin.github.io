@@ -95,8 +95,51 @@ new progress: 1) reorder dict 2) load one table of 5 results per genre. If user 
 }
 
 4/17{
-progress: 1) reorder dict 2) if rating reasons is learn more don't print it.
+progress: 
+1) reorder dict DONE 
 
-3) load one table of 5 results per genre. If user clicks details arrow button, hiddenDiv items are loaded for that game only.
+2a) scrape the whole store using sitemap (check first if sitemap includes an abundance of collections pages that can be scraped, then check storage capacity for so many data, then check how to get more than 49 results per collections page). Have one database per genre. According to freshGame["genre"], save to that genre's database. (ADDED ISSUE for later)
 
+2b) load one table of 10 results per genre. If user clicks details arrow button, hiddenDiv items are shown for that game only. 
+  -> should only have columns, not rows at all. But set a class with set height on each item.
+
+  -> if so, change one database or have multiple databases organized differently or just use JS each time "load more" happens to search the whole database until finding enough new things?
+    -> ONE database for now. Will add Steam games with Postgres first bc it's easier than adding the rest of GPlay with sitemaps. And will only have one table on Postgres, Tim said.
+
+  -> ask: if not getting all games and using original 2 view above, what should be the default view? ONLY USE TOP CATEGORIES. (maybe use separate databases for those even though it's temporary). Load first 25 results and a "show more" button at the bottom. No second web page.
+
+3) if rating reasons is learn more don't print it.
+
+4) add filter buttons that calls upload function again with new filters list as a parameter (or calls a separate function that refreshes it)
+
+5) add fuzzy search
+
+New progress:
+1. Format enough to be useful for only a few games:
+  a. Replace row structure with column-only structure
+    1. Create empty column divs
+    2. Loop through columns and add each element
+    3. Every element has a class that assigns fixed height
+    4. How to make details expand without covering below game?
+      a. could add margin-below class plus show hidden horizontal div. Will need to set relative position to make sure it goes in the right place and set z-index so it doesn't interact with layout at all.
+
+  b. Load first 25 results and a "show more" button at the bottom. No second page.
+
+  c. Filter buttons at the top of certain columns
+    1. Only for genre, rating, ratingReasons. (StarRating and price will need special treatment, so wait until after Steam.)
+    2. Filter button reveals a drop-down of filter options with Apply button at the bottom.
+      a. Each option in the drop-down has a checkbox next to it. Checking a box just calls setFilter(filter, addOrRemove).
+      b. There's an "Apply" button at the bottom of the drop-down list that calls uploadData(filters).
+    4. Refresh function just loads the first 25 games that meet the criteria
+
+2. Fuzzy Search options
+  a. https://github.com/atom/fuzzaldrin/
+  b. https://github.com/farzher/fuzzysort
+
+3. Steam
+  a. Postgres
+}
+
+4/19{
+move script tags after body
 }

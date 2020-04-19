@@ -67,6 +67,10 @@ html, body {
   display: flex;
 }
 
+.hidden {
+  display: none;
+}
+
 /* || Sitewide || */
 body {
   font-family: 'Nunito Sans', sans-serif;
