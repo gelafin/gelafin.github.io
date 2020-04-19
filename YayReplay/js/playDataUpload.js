@@ -70,6 +70,9 @@ function uploadPlayData(parsedObject){
           document.getElementById('game-image-column').appendChild(newImg);
           continue;
       } else if (getColumnId(column) != false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+
+          console.log('this block activated by', column);
+
           let newColumnDiv = document.createElement('div');
           newColumnDiv.innerHTML = gameRow[column];
           newColumnDiv.className = 'game-data-item';
@@ -78,40 +81,40 @@ function uploadPlayData(parsedObject){
             beginHiddenItems = true;
           }
       } else { // it's a hidden details item
-        // TODO: Once search is ready, make hidden items load in a separate function called by button
-        // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
-        if (column === 'video') {
-            if (gameRow[column] != 'none') {
-              let newIframe = document.createElement('iframe');
-              newIframe.src = gameRow[column];
-              newIframe.className = 'game-data-item';
-              newRowDivHidden.appendChild(newIframe);
-            }
-            continue;
-        } else if (column === 'previewImageList') {
-            // makes new img element for each. uris are separated by comma
-            previewImages = gameRow[column].split(', ');
-            for (const uri of previewImages) {
-              let newImgTag = document.createElement('img');
-              newImgTag.src = uri;
-              newImgTag.className = 'game-data-item';
-              newRowDivHidden.appendChild(newImgTag);
-            }
-            continue;
-        } else if (column === 'link') {
-            let newAnchor = document.createElement('a');
-            newAnchor.innerHTML = 'Google Play page';
-            newAnchor.title = 'Google Play page';
-            newAnchor.href = gameRow[column];
-            newAnchor.target = "_blank";
-            newAnchor.className = 'game-data-item';
-            newRowDivHidden.appendChild(newAnchor);
-            continue; // short-circuit for efficiency
-        } else {
-          let newDiv = document.createElement('div');
-          newDiv.innerHTML = gameRow[column];
-          newRowDivHidden.appendChild(newDiv);
-        }
+          // TODO: Once search is ready, make hidden items load in a separate function called by button
+          // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
+          if (column === 'video') {
+              if (gameRow[column] != 'none') {
+                let newIframe = document.createElement('iframe');
+                newIframe.src = gameRow[column];
+                newIframe.className = 'game-data-item';
+                newRowDivHidden.appendChild(newIframe);
+              }
+              continue;
+          } else if (column === 'previewImageList') {
+              // makes new img element for each. uris are separated by comma
+              previewImages = gameRow[column].split(', ');
+              for (const uri of previewImages) {
+                let newImgTag = document.createElement('img');
+                newImgTag.src = uri;
+                newImgTag.className = 'game-data-item';
+                newRowDivHidden.appendChild(newImgTag);
+              }
+              continue;
+          } else if (column === 'link') {
+              let newAnchor = document.createElement('a');
+              newAnchor.innerHTML = 'Google Play page';
+              newAnchor.title = 'Google Play page';
+              newAnchor.href = gameRow[column];
+              newAnchor.target = "_blank";
+              newAnchor.className = 'game-data-item';
+              newRowDivHidden.appendChild(newAnchor);
+              continue; // short-circuit for efficiency
+          } else {
+              let newDiv = document.createElement('div');
+              newDiv.innerHTML = gameRow[column];
+              newRowDivHidden.appendChild(newDiv);
+          }
       }
     }
   }
