@@ -77,7 +77,7 @@ function uploadPlayData(parsedObject){
 
     for (const column of parsedObject.meta.fields){
       if (beginHiddenItems) {
-        let newRowDivHidden = createElementInside('div', 'game-data-container');
+        var newRowDivHidden = createElementInside('div', 'game-data-container');
         newRowDivHidden.className = 'flexbox-container game-details hidden';
       }
 
