@@ -117,13 +117,14 @@ progress:
 New progress:
 1. Format enough to be useful for only a few games:
   a. Replace row structure with column-only structure
-    1. Create empty column divs
+    1. Create empty column divs (DONE)
     2. Loop through columns and add each element
-      a. For text-only non-hidden columns, make a dict that maps each to its cssId.
-      b. make the dict know if something is hidden for l. 72
-    3. Every element has a class that assigns fixed height
+      a. For text-only non-hidden columns, make a dict that maps each to its cssId. (DONE)
+      b. make the dict know if something is hidden for l. 72 (DONE enough for testing)
+    3. Every element has a class that assigns fixed height (DONE)
     4. How to make details expand without covering below game?
-      a. could add margin-below class plus show hidden horizontal div. Will need to set relative position to make sure it goes in the right place and set z-index so it doesn't interact with layout at all.
+      a. could add margin-below class plus show hidden horizontal div. 
+      b. Will need to set relative position to make sure it goes in the right place and set z-index so it doesn't interact with layout at all. (DONE)
 
   b. Load first 25 results and a "show more" button at the bottom. No second page.
 
@@ -142,6 +143,23 @@ New progress:
   a. Postgres
 }
 
-4/19{
+4/18{
+above. Progress: hiddenrow does not appear after a game. Check loop scope and relative position.
+
 move script tags after body
+}
+
+4/19{
+changing progress to 1.b. Will use Papaparse's step. parser.pause() will be called after 50 results are loaded, and parser.resume() will be called by a button at the bottom. Which means do a regular for loop 25 times and then add a check at the top of the loop for a null result, in which case change button text to "all games showing" and gray it out (change tag to <button disabled>).
+
+add button in HTML after columns so it's always at bottom
+
+Papaparse.parse(...{step: uploadPlayData})
+
+uploadPlayData():
+  for (let index = 0; index < 25; index++):
+    for each column...add to HTML column
+    parser.pause()
+
+(button calls parser.resume())
 }
