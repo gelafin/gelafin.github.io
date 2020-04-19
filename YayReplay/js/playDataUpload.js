@@ -73,14 +73,7 @@ function printHeaders(parsedObject){
 
 function uploadPlayData(parsedObject){
   for (const gameRow of parsedObject.data){
-    var beginHiddenItems = false;
-
     for (const column of parsedObject.meta.fields){
-      if (beginHiddenItems) {
-        var newRowDivHidden = createElementInside('div', 'game-data-container');
-        newRowDivHidden.className = 'flexbox-container game-details hidden';
-      }
-
       if (column === 'id') {
         continue; // don't print id
       } else if (column === 'image') {
@@ -88,6 +81,12 @@ function uploadPlayData(parsedObject){
           newImg.src = gameRow[column];
           newImg.className = 'game-data-item game-image';
           document.getElementById('game-image-column').appendChild(newImg);
+
+          // prepare hidden row underneath first item
+          var newRowDivHidden = createElement('div');
+          newRowDivHidden.className = 'flexbox-container game-details hidden';
+          newImg.appendChild(newRowDivHidden);
+
           continue; // short-circuit for efficiency
       } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
 
@@ -97,9 +96,6 @@ function uploadPlayData(parsedObject){
           newColumnDiv.innerHTML = gameRow[column];
           newColumnDiv.className = 'game-data-item';
           document.getElementById(getColumnId(column)).appendChild(newColumnDiv);
-          if (column === 'contentRatingReasons') { // last non-hidden item
-            beginHiddenItems = true;
-          }
           continue;
       } else { // it's a hidden details item
           // TODO: Once search is ready, make hidden items load in a separate function called by button
