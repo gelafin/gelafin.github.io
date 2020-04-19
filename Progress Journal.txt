@@ -120,6 +120,7 @@ New progress:
     1. Create empty column divs
     2. Loop through columns and add each element
       a. For text-only non-hidden columns, make a dict that maps each to its cssId.
+      b. make the dict know if something is hidden for l. 72
     3. Every element has a class that assigns fixed height
     4. How to make details expand without covering below game?
       a. could add margin-below class plus show hidden horizontal div. Will need to set relative position to make sure it goes in the right place and set z-index so it doesn't interact with layout at all.

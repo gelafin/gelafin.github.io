@@ -37,6 +37,26 @@ function getColumnId(column) {
   return false; // TOOD: make this enum
 }
 
+function getColumnIdTemp(column) {
+  columnIds = {
+    'image': 'game-image-column',
+    'title': 'game-title-column',
+    'starRating': 'game-stars-column',
+    'price': 'game-price-column',
+    'contentRating': 'game-content-rating-column',
+    'contentRatingReasons': 'game-content-rating-reasons-column',
+    'genreList': 'game-genre-column',
+  };
+
+  for (const key in columnIds) {
+    if (column === key) {
+      return columnIds[key];
+    }
+  }
+
+  return false; // TOOD: make this enum
+}
+
 // unused for now, since headers are hard-coded in HTML
 function printHeaders(parsedObject){
   for (const column of parsedObject.meta.fields){
@@ -69,7 +89,7 @@ function uploadPlayData(parsedObject){
           newImg.className = 'game-data-item game-image';
           document.getElementById('game-image-column').appendChild(newImg);
           continue;
-      } else if (getColumnId(column) != false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+      } else if (getColumnIdTemp(column) === true) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
 
           console.log('this block activated by', column);
 
@@ -80,6 +100,7 @@ function uploadPlayData(parsedObject){
           if (column === 'contentRatingReasons') { // last non-hidden item
             beginHiddenItems = true;
           }
+          continue;
       } else { // it's a hidden details item
           // TODO: Once search is ready, make hidden items load in a separate function called by button
           // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
