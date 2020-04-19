@@ -31,10 +31,10 @@ function getColumnId(column) {
   for (const key in columnIds) {
     if (column === key) {
       return columnIds[key];
-    } else {
-      return false; // TOOD: make this enum
     }
   }
+
+  return false; // TOOD: make this enum
 }
 
 // unused for now, since headers are hard-coded in HTML
