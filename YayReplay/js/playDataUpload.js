@@ -83,7 +83,7 @@ function uploadPlayData(parsedObject){
           document.getElementById('game-image-column').appendChild(newImg);
 
           // prepare hidden row underneath first item
-          var newRowDivHidden = createElement('div');
+          var newRowDivHidden = document.createElement('div');
           newRowDivHidden.className = 'flexbox-container game-details hidden';
           newImg.appendChild(newRowDivHidden);
 
