@@ -53,7 +53,7 @@ function printHeaders(parsedObject){
 
 function uploadPlayData(parsedObject){
   for (const gameRow of parsedObject.data){
-    beginHiddenItems = false;
+    var beginHiddenItems = false;
 
     for (const column of parsedObject.meta.fields){
       if (beginHiddenItems) {
