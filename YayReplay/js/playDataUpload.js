@@ -60,13 +60,13 @@ function uploadPlayData(parsedObject){
           let newImg = document.createElement('img');
           newImg.src = gameRow[column];
           newImg.className = 'game-data-item game-image';
-          getElementById('game-image-column').appendChild(newImg);
+          document.getElementById('game-image-column').appendChild(newImg);
           continue;
       } else if (getColumnId(column) != false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
           let newColumnDiv = document.createElement('div');
           newColumnDiv.innerHTML = gameRow[column];
           newColumnDiv.className = 'game-data-item';
-          getElementById(getColumnId(column)).appendChild(newColumnDiv);
+          document.getElementById(getColumnId(column)).appendChild(newColumnDiv);
       }
     }
 
