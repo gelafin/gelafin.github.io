@@ -1,7 +1,7 @@
 /* papaparse imported using script tag */
 
-function createElementInside(newTag, containerClass){
-  var container = document.getElementById(containerClass);
+function createElementInside(newTag, containerId){
+  var container = document.getElementById(containerId);
   let newElement = document.createElement(newTag); // create element with flex-flow: row nowrap using .className assignment
   container.appendChild(newElement); // new empty div to keep children in a row
   return newElement;
@@ -10,6 +10,31 @@ function createElementInside(newTag, containerClass){
 function isHiddenItem(heading){
   hiddenItemColumns = ['video', 'previewImageList', 'publisher', 'link'];
   return hiddenItemColumns.includes(heading);
+}
+
+function getColumnId(column) {
+  columnIds = {
+    'id': 'n/a',
+    'image': 'game-image-column',
+    'title': 'game-title-column',
+    'starRating': 'game-stars-column',
+    'price': 'game-price-column',
+    'contentRating': 'game-content-rating-column',
+    'contentRatingReasons': 'game-content-rating-reasons-column',
+    'video': 'n/a',
+    'previewImageList': 'n/a',
+    'genreList': 'game-genre-column',
+    'publisher': 'n/a',
+    'link': 'n/a'
+  };
+
+  for (const key in columnIds) {
+    if (column === key) {
+      return columnIds[key];
+    } else {
+      return false; // TOOD: make this enum
+    }
+  }
 }
 
 // unused for now, since headers are hard-coded in HTML
@@ -31,50 +56,55 @@ function uploadPlayData(parsedObject){
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {
         continue; // don't print id
-      } else if (column === 'link') {
-          let newAnchor = document.createElement('a');
-          newAnchor.innerHTML = 'Google Play page';
-          newAnchor.title = 'Google Play page';
-          newAnchor.href = gameRow[column];
-          newAnchor.target = "_blank";
-          newAnchor.className = 'game-data-item';
-          newRowDiv.appendChild(newAnchor);
-          continue;
       } else if (column === 'image') {
           let newImg = document.createElement('img');
           newImg.src = gameRow[column];
           newImg.className = 'game-data-item game-image';
-          newRowDiv.appendChild(newImg);
-      } else if (!isHiddenItem(column)){
-          let newColumnDiv = document.createElement('div'); // row of children
+          getElementById('game-image-column').appendChild(newImg);
+          continue;
+      } else if (getColumnId(column) != false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+          let newColumnDiv = document.createElement('div');
           newColumnDiv.innerHTML = gameRow[column];
-          newColumnDiv.className = 'game-column';
-          newRowDiv.appendChild(newColumnDiv);
+          newColumnDiv.className = 'game-data-item';
+          getElementById(getColumnId(column)).appendChild(newColumnDiv);
       }
     }
 
     // TODO: Once search is ready, make hidden items load in a separate function called by button
     // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
-    let newRowDivHidden = createRowDivInside('game-data-container');
+    let newRowDivHidden = createElementInside('div', 'game-data-container');
     newRowDivHidden.className = 'flexbox-container game-details hidden'; // everything below that goes in this div should be loaded only after button press
     if (column === 'video') {
         if (gameRow[column] != 'none') {
-          let newIframe = document.createElementInside('iframe', 'newRowDivHidden');
+          let newIframe = document.createElement('iframe');
           newIframe.src = gameRow[column];
           newIframe.className = 'game-data-item';
           newRowDivHidden.appendChild(newIframe);
         }
+        continue;
     } else if (column === 'previewImageList') {
         // makes new img element for each. uris are separated by comma
         previewImages = gameRow[column].split(', ');
         for (const uri of previewImages) {
-          let newImgTag = document.createElementInside('img', 'newRowDivHidden');
+          let newImgTag = document.createElement('img');
           newImgTag.src = uri;
           newImgTag.className = 'game-data-item';
+          newRowDivHidden.appendChild(newImgTag);
         }
+        continue;
+    } else if (column === 'link') {
+        let newAnchor = document.createElement('a');
+        newAnchor.innerHTML = 'Google Play page';
+        newAnchor.title = 'Google Play page';
+        newAnchor.href = gameRow[column];
+        newAnchor.target = "_blank";
+        newAnchor.className = 'game-data-item';
+        newRowDivHidden.appendChild(newAnchor);
+        continue; // short-circuit for efficiency
     } else {
-      let newDiv = document.createElementInside('div', 'newRowDivHidden');
+      let newDiv = document.createElement('div');
       newDiv.innerHTML = gameRow[column];
+      newRowDivHidden.appendChild(newDiv);
     }
   }
 }
