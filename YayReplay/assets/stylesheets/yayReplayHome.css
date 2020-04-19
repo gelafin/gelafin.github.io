@@ -2,6 +2,10 @@
   --row-height: 100px;
 }
 
+.game-data-container {
+  flex-flow: row nowrap;
+}
+
 .game-column {
   flex-flow: column nowrap;
   max-width: 15%;
