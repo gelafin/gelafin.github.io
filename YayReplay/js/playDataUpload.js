@@ -89,9 +89,6 @@ function uploadPlayData(parsedObject){
 
           continue; // short-circuit for efficiency
       } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
-
-          console.log('this block activated by', column);
-
           let newColumnDiv = document.createElement('div');
           newColumnDiv.innerHTML = gameRow[column];
           newColumnDiv.className = 'game-data-item';
