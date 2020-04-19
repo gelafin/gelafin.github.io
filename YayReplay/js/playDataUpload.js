@@ -64,7 +64,7 @@ function printHeaders(parsedObject){
     column === 'previewImageList') {
       continue; // don't print these column titles
     } else {
-        let newHeaderDiv = document.createElementInside('div', 'game-data-container'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
+        let newHeaderDiv = createElementInside('div', 'game-data-container'); // TODO: columns should be accessible to screen readers, so maybe h3 or something
         newColumnDiv.innerHTML = column;
         newColumnDiv.className = 'game-column';
     }
@@ -88,8 +88,8 @@ function uploadPlayData(parsedObject){
           newImg.src = gameRow[column];
           newImg.className = 'game-data-item game-image';
           document.getElementById('game-image-column').appendChild(newImg);
-          continue;
-      } else if (getColumnIdTemp(column) === true) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+          continue; // short-circuit for efficiency
+      } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
 
           console.log('this block activated by', column);
 
@@ -130,8 +130,8 @@ function uploadPlayData(parsedObject){
               newAnchor.target = "_blank";
               newAnchor.className = 'game-data-item';
               newRowDivHidden.appendChild(newAnchor);
-              continue; // short-circuit for efficiency
-          } else {
+              continue;
+          } else { // text-only hidden details item
               let newDiv = document.createElement('div');
               newDiv.innerHTML = gameRow[column];
               newRowDivHidden.appendChild(newDiv);
