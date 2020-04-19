@@ -98,39 +98,39 @@ function uploadPlayData(parsedObject){
           document.getElementById(getColumnId(column)).appendChild(newColumnDiv);
           continue;
       } else { // it's a hidden details item
-          // TODO: Once search is ready, make hidden items load in a separate function called by button
-          // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
+        // TODO: Once search is ready, make hidden items load in a separate function called by button
+        // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
           if (column === 'video') {
-              if (gameRow[column] != 'none') {
-                let newIframe = document.createElement('iframe');
-                newIframe.src = gameRow[column];
-                newIframe.className = 'game-data-item';
-                newRowDivHidden.appendChild(newIframe);
-              }
-              continue;
+            if (gameRow[column] != 'none') {
+              let newIframe = document.createElement('iframe');
+              newIframe.src = gameRow[column];
+              newIframe.className = 'game-data-item';
+              newRowDivHidden.appendChild(newIframe);
+            }
+            continue;
           } else if (column === 'previewImageList') {
-              // makes new img element for each. uris are separated by comma
-              previewImages = gameRow[column].split(', ');
-              for (const uri of previewImages) {
-                let newImgTag = document.createElement('img');
-                newImgTag.src = uri;
-                newImgTag.className = 'game-data-item';
-                newRowDivHidden.appendChild(newImgTag);
-              }
-              continue;
+            // makes new img element for each. uris are separated by comma
+            previewImages = gameRow[column].split(', ');
+            for (const uri of previewImages) {
+              let newImgTag = document.createElement('img');
+              newImgTag.src = uri;
+              newImgTag.className = 'game-data-item';
+              newRowDivHidden.appendChild(newImgTag);
+            }
+            continue;
           } else if (column === 'link') {
-              let newAnchor = document.createElement('a');
-              newAnchor.innerHTML = 'Google Play page';
-              newAnchor.title = 'Google Play page';
-              newAnchor.href = gameRow[column];
-              newAnchor.target = "_blank";
-              newAnchor.className = 'game-data-item';
-              newRowDivHidden.appendChild(newAnchor);
-              continue;
+            let newAnchor = document.createElement('a');
+            newAnchor.innerHTML = 'Google Play page';
+            newAnchor.title = 'Google Play page';
+            newAnchor.href = gameRow[column];
+            newAnchor.target = "_blank";
+            newAnchor.className = 'game-data-item';
+            newRowDivHidden.appendChild(newAnchor);
+            continue;
           } else { // text-only hidden details item
-              let newDiv = document.createElement('div');
-              newDiv.innerHTML = gameRow[column];
-              newRowDivHidden.appendChild(newDiv);
+            let newDiv = document.createElement('div');
+            newDiv.innerHTML = gameRow[column];
+            newRowDivHidden.appendChild(newDiv);
           }
       }
     }
@@ -142,5 +142,5 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     download: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
-                    complete: uploadPlayData
+                    chunk: uploadPlayData
                   });

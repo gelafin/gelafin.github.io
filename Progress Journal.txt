@@ -162,6 +162,9 @@ uploadPlayData():
     parser.pause()
 
 (button calls parser.resume())
+<<<<<<< HEAD
 
 which element should be the parent of relative positioned hidden?
+=======
+>>>>>>> 8e103f68ecde9c6ecdc7a13378ecdb754be1b6cb
 }
