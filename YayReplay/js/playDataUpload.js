@@ -71,7 +71,7 @@ function printHeaders(parsedObject){
   }
 }
 
-function uploadPlayData(parsedObject){
+function uploadPlayData(parsedObject, parser){
   for (const gameRow of parsedObject.data){
     for (const column of parsedObject.meta.fields){
       if (column === 'id') {
