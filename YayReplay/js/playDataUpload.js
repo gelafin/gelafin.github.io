@@ -137,6 +137,7 @@ function uploadPlayData(parsedObject, parser){
 }
 
 Papa.LocalChunkSize = 100000; // set chunk to less than the file
+Papa.RemoteChunkSize = 100000; // set chunk to less than the file
 
 document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     header: true,
