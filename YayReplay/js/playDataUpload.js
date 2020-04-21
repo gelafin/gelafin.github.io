@@ -1,8 +1,8 @@
 /* papaparse imported using script tag */
 
 class Manager {
-  var totalRowCounter = 1; //must start at 1 bc compares to array.length below
-  var chunkRowsUploaded = 0; // keeps track of the 50 to avoid bug where like 40 results load and then oh no there's no more time to resume and resume calls upload50 from the beginning, which loads 50+40 from before = 90 results in one button press.
+  totalRowCounter = 1; //must start at 1 bc compares to array.length below
+  chunkRowsUploaded = 0; // keeps track of the 50 to avoid bug where like 40 results load and then oh no there's no more time to resume and resume calls upload50 from the beginning, which loads 50+40 from before = 90 results in one button press.
 }
 
 function createElementInside(newTag, containerId){
