@@ -136,7 +136,10 @@ function uploadPlayData(parsedObject, parser){
   }
 }
 
-document.onload = Papa.parse('./assets/PlayAppData.csv', {
+var papa = Papa();
+papa.localChunkSize = 100000; // set chunk to less than the file
+
+document.onload = papa.parse('./assets/PlayAppData.csv', {
                     header: true,
                     download: true,
                     dynamicTyping: true,
