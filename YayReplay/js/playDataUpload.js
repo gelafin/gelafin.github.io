@@ -131,9 +131,9 @@ function uploadPlayData(parsedObject, parser){
           }
       }
     }
+    //after for loop goes through the chunk once, pause
+    parser.pause();
   }
-  //after for loop goes through the chunk once, pause
-  parser.pause();
 }
 
 document.onload = Papa.parse('./assets/PlayAppData.csv', {

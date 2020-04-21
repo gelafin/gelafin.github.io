@@ -167,3 +167,24 @@ invisible not showing up at all when child of img, but codepen shows that's not 
 
 Probably should call Papaparse.parse inside a for loop to achieve button loading
 }
+
+4/21{
+just go back to rows and set column width on each element in that column. Rows will enable hidden row to be toggled with display:none
+
+Chunksize is very large. One user reported 40,000 does 300 rows-ish, and this chunk is 5M+. Could set a smaller chunk size, or could use a loop. Will test this...
+
+// Papaparse parses a whole chunk and gives it to callback
+
+// callback processes 50 rows of the chunk
+  if rowsUploaded >= parser.streamer._rowCount
+    parser.resume
+  for (var index; ...50x):
+    gamerow = parsedObject.data;
+    // upload its data
+
+// callback pauses parser so callback is not processed again (rest of chunk after 50 rows is not processed)
+  parser.pause();
+
+// in button function:
+  // calls uploadData(), and parser resumes after the whole first chunk, not knowing the first chunk is not finished processing
+}
