@@ -79,7 +79,7 @@ class Manager {
   uploadPlayData(parsedObject, parser){
     for (let index = this.chunkRowsUploaded; index < this.loadRows; index++, this.totalRowCounter++){ //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50
       if (this.totalRowCounter + 1 > parser.streamer._rowCount) { // if no more rows in this chunk (counter starts at 0 in order to subscript)
-        console.log("resuming parsing...");
+        console.log("finished uploading this chunk. Calling parser.resume(), which will get a new chunk and then...?");
         parser.resume(); // resume parsing. This should call uploadPlayData again from the top after getting the new chunk
       }
 
@@ -164,6 +164,7 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     dynamicTyping: true,
                     skipEmptyLines: true,
                     chunk: function(results, parser) {
+                      console.log("starting a chunk callback");
                       manager.uploadPlayData(results, parser);
                       parser.pause();
                     }
