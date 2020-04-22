@@ -81,6 +81,7 @@ class Manager {
       if (this.totalRowCounter + 1 > parser.streamer._rowCount) { // if no more rows in this chunk (counter starts at 0 in order to subscript)
         console.log("finished uploading this chunk. Calling parser.resume(), which will get a new chunk and then...?");
         parser.resume(); // resume parsing. This should call uploadPlayData again from the top after getting the new chunk
+        return;
       }
 
       let gameRow = parsedObject.data[manager.totalRowCounter];
