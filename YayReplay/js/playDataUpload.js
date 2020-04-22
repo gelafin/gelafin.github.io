@@ -168,7 +168,7 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     skipEmptyLines: true,
                     chunk: function(results, parser) {
                       console.log("starting a chunk callback");
-                      manager.uploadPlayData(results, parser);
                       parser.pause();
+                      manager.uploadPlayData(results, parser);
                     }
                   });
