@@ -177,6 +177,8 @@ manager object
   var totalRowCounter = 1 //must start at 1 bc compares to array.length below
   var chunkRowsUploaded = 0 // keeps track of the 50 to avoid bug where like 40 results load and then oh no there's no more time to resume and resume calls upload50 from the beginning, which loads 50+40 from before = 90 results in one button press.
 
+/*DONE making manager*/
+
 papa.parse(manager.upload50(), pause()) // get a big ol 5MB chunk and upload 50 rows of it and immediately pause, not using the rest of the chunk
 
 manager.upload50:
