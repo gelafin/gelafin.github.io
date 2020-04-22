@@ -78,7 +78,7 @@ class Manager {
 
   uploadPlayData(parsedObject, parser){
     for (let index = this.chunkRowsUploaded; index < this.loadRows; index++){ //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50
-      if (totalRowCounter > parser.streamer._rowCount) { // if no more rows in this chunk
+      if (this.totalRowCounter > parser.streamer._rowCount) { // if no more rows in this chunk
         console.log("resuming parsing...");
         parser.resume(); // resume parsing. This should call uploadPlayData again from the top after getting the new chunk
       }
