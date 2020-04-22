@@ -86,6 +86,9 @@ class Manager {
       let gameRow = parsedObject.data[manager.totalRowCounter];
 
       if (gameRow) {
+
+        console.log("uploading game #", this.totalRowCounter);
+
         for (const column of parsedObject.meta.fields) { // loop through one row to upload all columns
           if (column === 'id') {
             continue; // don't print id
@@ -145,7 +148,7 @@ class Manager {
           }
         }
       } else {
-        console.log("no more!");
+        console.log("all games showing! Game # ", this.totalRowCounter, "doesn't exist in the database");
         // deactivate "load more" button
         return;
       }
