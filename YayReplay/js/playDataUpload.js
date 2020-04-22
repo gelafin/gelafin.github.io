@@ -135,8 +135,6 @@ class Manager {
             }
         }
       }
-      //after for loop goes through one game, pause parsing
-      parser.pause();
     }
   }
 }
@@ -150,5 +148,8 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                     download: true,
                     dynamicTyping: true,
                     skipEmptyLines: true,
-                    chunk: manager.uploadPlayData
+                    chunk: function(results, parser) {
+                      manager.uploadPlayData(results, parser);
+                      parser.pause();
+                    }
                   });
