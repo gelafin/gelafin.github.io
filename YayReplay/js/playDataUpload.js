@@ -74,68 +74,83 @@ function printHeaders(parsedObject){
 class Manager {
   totalRowCounter = 1; //must start at 1 bc compares to array.length below
   chunkRowsUploaded = 0; // keeps track of the 50 to avoid bug where like 40 results load and then oh no there's no more time to resume and resume calls upload50 from the beginning, which loads 50+40 from before = 90 results in one button press.
+  loadRows = 50; // how many rows to load at once
 
   uploadPlayData(parsedObject, parser){
-    for (const gameRow of parsedObject.data){
-      for (const column of parsedObject.meta.fields){
-        if (column === 'id') {
-          continue; // don't print id
-        } else if (column === 'image') {
-            let newImg = document.createElement('img');
-            newImg.src = gameRow[column];
-            newImg.className = 'game-data-item game-image';
-            document.getElementById('game-image-column').appendChild(newImg);
+    for (let index = this.chunkRowsUploaded; index < this.loadRows; index++){ //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50
+      if (totalRowCounter > parser.streamer._rowCount) { // if no more rows in this chunk
+        console.log("resuming parsing...");
+        parser.resume(); // resume parsing. This should call uploadPlayData again from the top after getting the new chunk
+      }
 
-            // prepare hidden row underneath first item
-            var newRowDivHidden = document.createElement('div');
-            newRowDivHidden.className = 'flexbox-container game-details hidden';
-            newImg.appendChild(newRowDivHidden);
+      let gameRow = parsedObject.data[manager.totalRowCounter];
 
-            continue; // short-circuit for efficiency
-        } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
-            let newColumnDiv = document.createElement('div');
-            newColumnDiv.innerHTML = gameRow[column];
-            newColumnDiv.className = 'game-data-item';
-            document.getElementById(getColumnId(column)).appendChild(newColumnDiv);
-            continue;
-        } else { // it's a hidden details item
-          // TODO: Once search is ready, make hidden items load in a separate function called by button
-          // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
-            if (column === 'video') {
-              if (gameRow[column] != 'none') {
-                let newIframe = document.createElement('iframe');
-                newIframe.src = gameRow[column];
-                newIframe.className = 'game-data-item';
-                newRowDivHidden.appendChild(newIframe);
+      if (gameRow) {
+        for (const column of parsedObject.meta.fields) { // loop through one row to upload all columns
+          if (column === 'id') {
+            continue; // don't print id
+          } else if (column === 'image') {
+              let newImg = document.createElement('img');
+              newImg.src = gameRow[column];
+              newImg.className = 'game-data-item game-image';
+              document.getElementById('game-image-column').appendChild(newImg);
+
+              // prepare hidden row underneath first item
+              var newRowDivHidden = document.createElement('div');
+              newRowDivHidden.className = 'flexbox-container game-details hidden';
+              newImg.appendChild(newRowDivHidden);
+
+              continue; // short-circuit for efficiency
+          } else if (getColumnIdTemp(column) !== false) { // if column is non-hidden text-only. TODO: how to save returned value to avoid a second call?
+              let newColumnDiv = document.createElement('div');
+              newColumnDiv.innerHTML = gameRow[column];
+              newColumnDiv.className = 'game-data-item';
+              document.getElementById(getColumnId(column)).appendChild(newColumnDiv);
+              continue;
+          } else { // it's a hidden details item
+            // TODO: Once search is ready, make hidden items load in a separate function called by button
+            // each game has a hidden details div that never interacts with layout. The button that shows this will also create space for it
+              if (column === 'video') {
+                if (gameRow[column] != 'none') {
+                  let newIframe = document.createElement('iframe');
+                  newIframe.src = gameRow[column];
+                  newIframe.className = 'game-data-item';
+                  newRowDivHidden.appendChild(newIframe);
+                }
+                continue;
+              } else if (column === 'previewImageList') {
+                // makes new img element for each. uris are separated by comma
+                let previewImages = gameRow[column].split(', ');
+                for (const uri of previewImages) {
+                  let newImgTag = document.createElement('img');
+                  newImgTag.src = uri;
+                  newImgTag.className = 'game-data-item';
+                  newRowDivHidden.appendChild(newImgTag);
+                }
+                continue;
+              } else if (column === 'link') {
+                let newAnchor = document.createElement('a');
+                newAnchor.innerHTML = 'Google Play page';
+                newAnchor.title = 'Google Play page';
+                newAnchor.href = gameRow[column];
+                newAnchor.target = "_blank";
+                newAnchor.className = 'game-data-item';
+                newRowDivHidden.appendChild(newAnchor);
+                continue;
+              } else { // text-only hidden details item
+                let newDiv = document.createElement('div');
+                newDiv.innerHTML = gameRow[column];
+                newRowDivHidden.appendChild(newDiv);
               }
-              continue;
-            } else if (column === 'previewImageList') {
-              // makes new img element for each. uris are separated by comma
-              let previewImages = gameRow[column].split(', ');
-              for (const uri of previewImages) {
-                let newImgTag = document.createElement('img');
-                newImgTag.src = uri;
-                newImgTag.className = 'game-data-item';
-                newRowDivHidden.appendChild(newImgTag);
-              }
-              continue;
-            } else if (column === 'link') {
-              let newAnchor = document.createElement('a');
-              newAnchor.innerHTML = 'Google Play page';
-              newAnchor.title = 'Google Play page';
-              newAnchor.href = gameRow[column];
-              newAnchor.target = "_blank";
-              newAnchor.className = 'game-data-item';
-              newRowDivHidden.appendChild(newAnchor);
-              continue;
-            } else { // text-only hidden details item
-              let newDiv = document.createElement('div');
-              newDiv.innerHTML = gameRow[column];
-              newRowDivHidden.appendChild(newDiv);
-            }
+          }
         }
+      } else {
+        console.log("no more!");
+        // deactivate "load more" button
+        return;
       }
     }
+    chunkRowsUploaded = 0; // after loop completes all 50 times, reset counter
   }
 }
 

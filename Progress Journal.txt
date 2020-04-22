@@ -181,12 +181,17 @@ manager object
 
 papa.parse(manager.upload50(), pause()) // get a big ol 5MB chunk and upload 50 rows of it and immediately pause, not using the rest of the chunk
 
+/*DONE refactoring .pause to this anonymous callback*/
+
 manager.upload50:
 
   for (let index = chunkRowsUploaded; index < 50; index++, manager.totalRowCounter++) //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50.
+/*DONE*/
+
   //but first, make sure a row is available
   if no more // totalRowCounter == parser.streamer._rowCount OR parsedObject.data.length() // _rowCount is more efficient but .length() may be the only available option
   parser.resume // return from this function and resume, which calls this function again as the chunk callback
+/*DONE*/
 
   if parsedObject.data[manager.totalRowCounter] != null:
     parsedObject.data[manager.totalRowCounter] //resume uploading the existing chunk from the current row
@@ -194,8 +199,9 @@ manager.upload50:
     print "no more!";
     gray out button;
     return;
-
+/*DONE*/
 chunkRowsUploaded = 0 // after loop completes 50 times, it's done
+/*DONE*/
 
 LOAD MORE button:
   calls manager.upload50
