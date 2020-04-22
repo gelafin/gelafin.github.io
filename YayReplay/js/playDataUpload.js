@@ -150,7 +150,7 @@ class Manager {
         return;
       }
     }
-    chunkRowsUploaded = 0; // after loop completes all 50 times, reset counter
+    this.chunkRowsUploaded = 0; // after loop completes all 50 times, reset counter
   }
 }
 
