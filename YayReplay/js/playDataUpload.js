@@ -72,13 +72,13 @@ function printHeaders(parsedObject){
 }
 
 class Manager {
-  totalRowCounter = 1; //must start at 1 bc compares to array.length below
+  totalRowCounter = 0; //must start at 0 bc subscripts data array below
   chunkRowsUploaded = 0; // keeps track of the 50 to avoid bug where like 40 results load and then oh no there's no more time to resume and resume calls upload50 from the beginning, which loads 50+40 from before = 90 results in one button press.
   loadRows = 50; // how many rows to load at once
 
   uploadPlayData(parsedObject, parser){
-    for (let index = this.chunkRowsUploaded; index < this.loadRows; index++){ //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50
-      if (this.totalRowCounter > parser.streamer._rowCount) { // if no more rows in this chunk
+    for (let index = this.chunkRowsUploaded; index < this.loadRows; index++, this.totalRowCounter++){ //loop 50 times to upload 50 rows, unless this function is being called after a resume(), which interrupted the count. In that case, make index not from 0 but from whatever row it was on before and continue until 50
+      if (this.totalRowCounter + 1 > parser.streamer._rowCount) { // if no more rows in this chunk (counter starts at 0 in order to subscript)
         console.log("resuming parsing...");
         parser.resume(); // resume parsing. This should call uploadPlayData again from the top after getting the new chunk
       }
