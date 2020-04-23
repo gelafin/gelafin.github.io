@@ -173,3 +173,6 @@ document.onload = Papa.parse('./assets/PlayAppData.csv', {
                       manager.uploadPlayData(results, parser);
                     }
                   });
+
+console.log("simulating load more button press...but it will not have the parse results")
+manager.uploadPlayData(Papa.results, Papa.parser);

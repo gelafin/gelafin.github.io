@@ -206,3 +206,15 @@ chunkRowsUploaded = 0 // after loop completes 50 times, it's done
 LOAD MORE button:
   calls manager.upload50
 }
+
+4/22{
+parser.resume() does get a new chunk and then do the callback, but when it calls upload() the second time, execution resumes at the return statement at the end. Trying putting a return statement at the top right after parser.resume. Nope
+
+Try putting load more button to call the upload function again
+}
+
+4/23{
+usefulness of Papaparse has run its course. Not worth spending lots of time getting a load more button with Papaparse when the final project won't use Papaparse. Could leave the project as is and start Leetcode studying, or could spend lots of time learning Node and Postgres, adding Steam.
+
+Making a new branch for Node.
+}
