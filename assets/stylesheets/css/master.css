@@ -108,6 +108,7 @@ header {
 }
 
 .home-nav-link {
+  margin-right: 10px;
   font-size: 2rem;
   color: rgba(255, 255, 255, 1);
 }
