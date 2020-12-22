@@ -103,6 +103,11 @@ header {
 }
 
 /* || Home Page || */
+.home-nav ul {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
 .home-nav li {
   margin-bottom: 40px;
 }
