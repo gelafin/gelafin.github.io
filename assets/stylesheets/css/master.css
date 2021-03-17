@@ -72,6 +72,7 @@ body {
   background-color: #f6e8b55c;
   font-family: 'Nunito Sans', sans-serif;
   margin-top: 30px;
+  margin-bottom: 100px;
 }
 
 header {
@@ -86,12 +87,22 @@ header {
 .main-content-wrapper {
   margin: auto;
   max-width: 50%;
+  padding: 35px;
+  border: 2px solid #c7c7ff;
+  border-radius: 5px;
+  background-color: #ffffff;
+}
+
+.tag-grouper {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .language-tag {
-  margin-left: 5px;
+  margin-right: 5px;
   padding: 3px;
   height: fit-content;
+  width: fit-content;
   background-color: #1eae29;
   color: white;
   border-radius: 6px;
@@ -119,15 +130,11 @@ header {
   margin-bottom: 40px;
 }
 
-.home-nav li > p {
+.home-nav li > * {
   margin-top: 10px;
 }
 
 .home-nav-link {
   font-size: 2rem;
   color: rgba(255, 255, 255, 1);
-}
-
-.home-nav-link-container {
-  display: inline-flex;
 }
