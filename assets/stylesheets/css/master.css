@@ -80,6 +80,10 @@ header {
   text-align: center;
 }
 
+h3 {
+  font-size: 2rem;
+}
+
 .site-title {
   font-size: 2rem;
 }
@@ -132,9 +136,4 @@ header {
 
 .home-nav li > * {
   margin-top: 10px;
-}
-
-.home-nav-link {
-  font-size: 2rem;
-  color: rgba(255, 255, 255, 1);
 }
