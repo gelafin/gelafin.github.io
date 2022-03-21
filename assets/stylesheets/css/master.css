@@ -84,6 +84,10 @@ h3 {
   font-size: 2rem;
 }
 
+h4 {
+  font-size: 1.5rem;
+}
+
 .site-title {
   font-size: 2rem;
 }
@@ -108,12 +112,16 @@ h3 {
   flex-flow: column nowrap;
 }
 
+.link-grouper > * {
+  margin-bottom: 10px;
+}
+
 .language-tag {
   margin-right: 5px;
   padding: 3px;
   height: fit-content;
   width: fit-content;
-  background-color: #c7c7ff;
+  background-color: #c7c7ff70;
   color: black;
   border-radius: 6px;
 }
