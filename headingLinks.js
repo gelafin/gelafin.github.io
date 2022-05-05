@@ -11,7 +11,7 @@
  *  this feature might not work as expected
  */
 // define heading link styling
-const headingLinkImgStyle = `height: 1em; margin-right: 6px; opacity: 0.2`;
+const headingLinkImgStyle = `height: 0.7em; margin-left: 11px; opacity: 0.2`;
 
 // define file path of link icon
 const iconFilepath = './assets/images/icons/link-icon.svg';
@@ -96,8 +96,11 @@ const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) 
  * @param iconFilepath path to link icon
  * @param headingLinkImgStyle string to set as icon style
  * @param skipCondition function returning true if a heading should be skipped
+ * @param placement if 
+ *                  'before': will insert link as previous sibling of heading
+ *                  'child': will insert link as child of heading
  */
-const addLinksToHeadings = (iconFilepath, headingLinkImgStyle, skipCondition) => {
+const addLinksToHeadings = (iconFilepath, headingLinkImgStyle, skipCondition, placement) => {
     const allHeadings = getAllHeadings();
 
     // create a new link element for each heading and append links
@@ -105,7 +108,19 @@ const addLinksToHeadings = (iconFilepath, headingLinkImgStyle, skipCondition) =>
     for (const heading of allHeadings) {
         if (!skipCondition || skipCondition(heading) != true) {
             const linkElement = createLinkToHeading(heading, iconFilepath, headingLinkImgStyle);
-            heading.parentNode.insertBefore(linkElement, heading);
+  
+            switch (placement) {
+                case 'before':
+                    // insert link as previous sibling of heading
+                    heading.parentNode.insertBefore(linkElement, heading);
+                    
+                    break;
+                case 'child':
+                    // insert link as child of heading
+                    heading.appendChild(linkElement);
+                    
+                    break;
+            }
         }
     }
 };
@@ -147,9 +162,9 @@ const main = (iconFilepath, headingLinkImgStyle) => {
             }
         };
 
-        wrapHeadings(skipTheseHeadings);
+        //wrapHeadings(skipTheseHeadings);
 
-        addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings);
+        addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings, 'child');
     });
 };
 
