@@ -62,7 +62,11 @@ table {
 }
 
 /* || Sitewide || */
-html, body {
+html {
+  font-size: 100%;
+}
+
+body {
   font-size: 20px;
   box-sizing: border-box;
 }
@@ -118,6 +122,11 @@ footer {
   border: 2px solid #c7c7ff;
   border-radius: 5px;
   background-color: #ffffff;
+}
+
+.home-item-title-container {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 .tag-grouper {
