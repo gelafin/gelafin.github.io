@@ -1,10 +1,17 @@
 /**
+ * @author Mark gelafin.github.io
+ * @license MIT
  *  Instantly adds links next to all headings on a page,
  *  and handles navigation using the heading links.
+ * 
  *  Requires an icon file at images/icons/link-icon.svg
+ * 
+ *  Copying heading style to wrappers relies on cascade,
+ *  so if you have !important in your heading style,
+ *  this feature might not work as expected
  */
 // define heading link styling
-const headingLinkImgStyle = `height: 1em`;
+const headingLinkImgStyle = `height: 1em; margin-right: 6px; opacity: 0.2`;
 
 // define file path of link icon
 const iconFilepath = './assets/images/icons/link-icon.svg';
@@ -43,6 +50,7 @@ const getAllHeadings = () => {
  * wraps headings in a flex horizontal div,
  * so links appear on the left of headings
  * @param skipCondition function returning true if a heading should be skipped
+ * Credit for appending to style: https://stackoverflow.com/a/5192938/14257952
  */
 const wrapHeadings = (skipCondition) => {
     const headings = getAllHeadings();
@@ -51,8 +59,11 @@ const wrapHeadings = (skipCondition) => {
         if (!skipCondition || skipCondition(heading) != true) {
             // create wrapper div to order link and heading horizontally
             const wrapperElement = document.createElement('div');
-            wrapperElement.style = 'display: flex; flex-flow: row wrap';
-    
+
+            // add wrapper layout styling
+            wrapperElement.style['display'] = 'flex';
+            wrapperElement.style['flex-flow'] = 'row wrap';
+
             // insert new element and reparent
             wrapElement(heading, wrapperElement);
         }
@@ -126,7 +137,7 @@ const addIdsToHeadings = () => {
 };
 
 const main = (iconFilepath, headingLinkImgStyle) => {
-    window.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('load', () => {  // use load to wait for CSS
         addIdsToHeadings();
 
         const skipTheseHeadings = (heading) => {
