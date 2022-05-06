@@ -183,7 +183,7 @@ const main = (iconFilepath, headingLinkImgStyle) => {
             }
         };
 
-        //wrapHeadings(skipTheseHeadings);
+        // This is the place to call wrapHeadings if using that option!
 
         addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings, 'child');
     });
