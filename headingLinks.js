@@ -75,6 +75,7 @@ const wrapHeadings = (skipCondition) => {
  * compatible with any h1-h6
  * @param headingElement heading element that needs a link
  * @param iconFilepath path to link icon
+ * credit for hover effect: https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseover_event
  */
 const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) => {
     const anchorElement = document.createElement('a');
@@ -84,6 +85,26 @@ const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) 
     imageElement.src = iconFilepath;
     imageElement.alt = '';
     imageElement.setAttribute('style', headingLinkImgStyle);
+
+    // copy current style
+    const originalOpacity = imageElement.style['opacity'];
+    const originalBorderBottom = imageElement.style['border-bottom'];
+
+    // listener to apply hover style
+    imageElement.addEventListener('mouseover', (event) => {
+        // apply style
+        event.target.style['opacity'] = '1';
+        event.target.style['border-bottom']  = '2px solid black';
+    });
+
+    // listener to remove hover style
+    imageElement.addEventListener('mouseout', (event) => {
+        // reset to original style after a short delay
+        setTimeout(function() {
+            event.target.style['opacity'] = originalOpacity;
+            event.target.style['border-bottom'] = originalBorderBottom;
+        }, 500);
+    });
 
     anchorElement.appendChild(imageElement);
 
