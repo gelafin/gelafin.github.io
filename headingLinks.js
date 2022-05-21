@@ -80,6 +80,7 @@ const wrapHeadings = (skipCondition) => {
 const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) => {
     const anchorElement = document.createElement('a');
     anchorElement.href = '#' + headingElement.getAttribute('id');
+    anchorElement.name = headingElement.getAttribute('id');
 
     const imageElement = document.createElement('img');
     imageElement.src = iconFilepath;
@@ -121,7 +122,7 @@ const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) 
  *                  'before': will insert link as previous sibling of heading
  *                  'child': will insert link as child of heading
  */
-const addLinksToHeadings = (iconFilepath, headingLinkImgStyle, skipCondition, placement) => {
+const addLinksToHeadings = async (iconFilepath, headingLinkImgStyle, skipCondition, placement) => {
     const allHeadings = getAllHeadings();
 
     // create a new link element for each heading and append links
@@ -172,7 +173,19 @@ const addIdsToHeadings = () => {
     }
 };
 
-const main = (iconFilepath, headingLinkImgStyle) => {
+/**
+ * scrolls the page to the id taken from the current page URL;
+ * does nothing if the id is not present and valid
+ */
+const scrollToIdInUrl = () => {
+    const idInUrl = window.location?.hash;
+
+    if (idInUrl) {
+        document.getElementById(idInUrl).scrollIntoView();
+    }
+};
+
+const main = async (iconFilepath, headingLinkImgStyle) => {
     window.addEventListener('load', () => {  // use load to wait for CSS
         addIdsToHeadings();
 
@@ -185,7 +198,9 @@ const main = (iconFilepath, headingLinkImgStyle) => {
 
         // This is the place to call wrapHeadings if using that option!
 
-        addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings, 'child');
+        await addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings, 'child');
+
+        scrollToIdInUrl();
     });
 };
 
