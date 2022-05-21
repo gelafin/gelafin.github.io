@@ -188,8 +188,8 @@ const scrollToIdInUrl = () => {
     }
 };
 
-const main = async (iconFilepath, headingLinkImgStyle) => {
-    window.addEventListener('load', () => {  // use load to wait for CSS
+const main = (iconFilepath, headingLinkImgStyle) => {
+    window.addEventListener('load', async () => {  // use load to wait for CSS
         addIdsToHeadings();
 
         const skipTheseHeadings = (heading) => {
