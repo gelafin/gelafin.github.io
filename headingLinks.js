@@ -181,7 +181,10 @@ const scrollToIdInUrl = () => {
     const idInUrl = window.location?.hash;
 
     if (idInUrl) {
-        document.getElementById(idInUrl).scrollIntoView();
+        // remove "#" from before id
+        const sectionId = idInUrl.split('#').slice(1);
+
+        document.getElementById(sectionId)?.scrollIntoView();
     }
 };
 
