@@ -101,10 +101,8 @@ const createLinkToHeading = (headingElement, iconFilepath, headingLinkImgStyle) 
     // listener to remove hover style
     imageElement.addEventListener('mouseout', (event) => {
         // reset to original style after a short delay
-        setTimeout(function() {
-            event.target.style['opacity'] = originalOpacity;
-            event.target.style['border-bottom'] = originalBorderBottom;
-        }, 500);
+        event.target.style['opacity'] = originalOpacity;
+        event.target.style['border-bottom'] = originalBorderBottom;
     });
 
     anchorElement.appendChild(imageElement);
