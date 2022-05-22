@@ -151,10 +151,6 @@ footer {
   justify-content: center;
 }
 
-.link-new-tab-icon {
-  max-height: 17px;
-}
-
 .language-tag {
   margin-right: 5px;
   padding: 3px;
@@ -163,6 +159,23 @@ footer {
   background-color: #c7c7ff70;
   color: black;
   border-radius: 6px;
+}
+
+.link-new-tab-icon {
+  max-height: 17px;
+}
+
+.hover-motion-parent {
+  position: relative;
+}
+
+.hover-motion-child {
+  transition: .25s cubic-bezier(0.25, 0, 0, 1);
+}
+
+/* thanks: https://stackoverflow.com/a/17489945/14257952 */
+.hover-motion-parent:hover > .hover-motion-child {
+  transform: translate(50%, -50%);
 }
 
 @media only screen and (max-width: 750px) {
