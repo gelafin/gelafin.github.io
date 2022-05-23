@@ -145,10 +145,12 @@ footer {
   margin-bottom: 10px;
 }
 
-.link-image-new-tab-grouper {
+.profile-link-section {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  max-width: fit-content;
+  margin: auto;
 }
 
 .language-tag {
