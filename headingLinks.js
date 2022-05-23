@@ -159,10 +159,10 @@ const addIdsToHeadings = () => {
     for (const heading of allHeadings) {
         let newId = uniqueIdPrefix + new String(uniqueIdSuffix);
 
-        // if id already exists, add a number to make it unique
+        // if id already exists, increment number to make it unique
         while (allIds.has(newId)) {
-            ++uniqueIdSuffix;
-            newId += String(uniqueIdSuffix);
+            uniqueIdSuffix = Number(uniqueIdSuffix) + 1;
+            newId = uniqueIdPrefix + String(uniqueIdSuffix);
         }
 
         // add the id to the element
