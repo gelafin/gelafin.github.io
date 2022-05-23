@@ -157,6 +157,10 @@ footer {
   margin: auto;
 }
 
+.profile-link-wrapper {
+  display: flex;
+}
+
 .language-tag {
   margin-right: 5px;
   padding: 3px;
