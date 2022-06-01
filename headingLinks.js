@@ -148,15 +148,16 @@ const addLinksToHeadings = async (iconFilepath, headingLinkImgStyle, skipConditi
 /**
  * adds unique Ids to each heading element
  * credit: select all IDs from https://stackoverflow.com/a/50407737/14257952
+ * credit: encode URI from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI
  */
 const addIdsToHeadings = () => {
     const allHeadings = getAllHeadings();
     const allIds = new Set(document.querySelectorAll('[id]'));
-    const uniqueIdPrefix = 'heading-link-id-';
     let uniqueIdSuffix = 0;
 
     // generate an id and add it to the heading element
     for (const heading of allHeadings) {
+        let uniqueIdPrefix = encodeURI(heading.textContent);
         let newId = uniqueIdPrefix + new String(uniqueIdSuffix);
 
         // if id already exists, increment number to make it unique
@@ -175,13 +176,18 @@ const addIdsToHeadings = () => {
  * scrolls the page to the id taken from the current page URL;
  * does nothing if the id is not present and valid
  */
-const scrollToIdInUrl = () => {
+const scrollToIdInUrl = (redirectTable) => {
     const idInUrl = window.location?.hash;
 
     if (idInUrl) {
         // remove "#" from before id
-        const sectionId = idInUrl.split('#').slice(1);
+        let sectionId = idInUrl.split('#').slice(1)[0];
 
+        // respect redirect Table
+        sectionId = Object.keys(redirectTable).includes(sectionId) ?
+            redirectTable[sectionId] :
+            sectionId;
+        
         document.getElementById(sectionId)?.scrollIntoView();
     }
 };
@@ -201,7 +207,8 @@ const main = (iconFilepath, headingLinkImgStyle) => {
 
         await addLinksToHeadings(iconFilepath, headingLinkImgStyle, skipTheseHeadings, 'child');
 
-        scrollToIdInUrl();
+        const redirectTable = {'heading-link-id-4': 'YayReplay%20-%202019-20200'};
+        scrollToIdInUrl(redirectTable);
     });
 };
 
