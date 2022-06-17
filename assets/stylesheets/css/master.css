@@ -1,4 +1,11 @@
 /*
+ variables
+*/
+:root {
+  --profile-icon-size: 32px;
+}
+
+/*
  Eric Meyer reset
  http://meyerweb.com/eric/tools/css/reset/ 2. v2.0 | 20110126
  License: none (public domain)
@@ -122,10 +129,17 @@ footer {
   margin: auto;
   margin-bottom: 100px;
   max-width: 50%;
-  padding: 35px;
+}
+
+.themed-card {
   border: 2px solid #c7c7ff;
   border-radius: 5px;
   background-color: #ffffff;
+  padding: 15px;
+}
+
+.themed-padding-large {
+  padding: 35px;
 }
 
 .home-item-title-container {
@@ -153,12 +167,79 @@ footer {
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  align-items: center;
   max-width: fit-content;
   margin: auto;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.profile-link-section > * {
+  margin-left: 0.7em;
+}
+
+.profile-link-section a {
+  max-height: var(--profile-icon-size);
 }
 
 .profile-link-wrapper {
   display: flex;
+}
+
+/* Alternate version using pseudo element (more appropriate but can't add sparkley class)
+ * 
+ */
+/* thanks https://stackoverflow.com/a/26449654/14257952 */
+/*
+.profile-link-hover-banner:hover::before {
+  background-color: #c7c7ffd1;
+  content: attr(name) / "profile";
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+*/
+.hide-if-hover {
+  opacity: 100;
+  position: absolute; /* fix element in place so it doesn't blink on hover */
+  top: 0;
+  left: 0;
+}
+.hide-if-hover:hover {
+  opacity: 0;
+}
+.profile-link-hover-banner-text {
+  opacity: 0;
+}
+.profile-link-hover-banner {
+  display: flex;  /* fixes extra height caused by ancestor being a flex container */
+  pointer-events: none; /* don't activate hover; let parent anchor control hover state
+                           thanks https://stackoverflow.com/a/30104683/14257952 */
+  opacity: 0;
+  background-color: #c7c7fff2;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  position: absolute;  /* thanks https://stackoverflow.com/a/26449654/14257952 */
+  top: 0;
+  left: 0;
+}
+a:hover .profile-link-hover-banner {
+  pointer-events: all;
+  opacity: 100;
+}
+/* show child element's text on banner element hover */
+a:hover .profile-link-hover-banner-text {
+  opacity: 100;
+}
+.profile-link-icon {
+  max-height: var(--profile-icon-size);
+}
+
+.no-underline-anchor {
+  text-decoration: none;
 }
 
 .language-tag {
@@ -172,7 +253,8 @@ footer {
 }
 
 .link-new-tab-icon {
-  max-height: 17px;
+  max-height: 0.6em;
+  max-width: 0.6em;
 }
 
 .hover-motion-parent {

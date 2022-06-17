@@ -5,7 +5,10 @@
     <link rel="stylesheet" href="./assets/stylesheets/css/master.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap">
     <title>Home - Mark Mendez Portfolio</title>
-    <script src="./headingLinks.js"></script>
+    <script src="./headingLinks.js" defer></script>
+    <!-- jQuery and custom script for sparkle hover effect -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" defer></script>
+    <script src="./scripts/sparkley.js" defer></script>
   </head>
   <body>
     <header>
@@ -13,29 +16,46 @@
         <h1 class="site-title ">Mark Mendez</h1>
         <h2>portfolio website</h2>
       </section>
-      <section class="profile-link-section">
+      <section class="profile-link-section themed-card">
+
         <div class="profile-link-wrapper hover-motion-parent">
-          <a href="https://github.com/gelafin" target="_blank">
-            <img src="./assets/images/icons/GitHub-Mark-64px.png" alt="GitHub Profile">
+          <a href="https://github.com/gelafin" target="_blank" class="no-underline-anchor">
+            <img class="profile-link-icon hide-if-hover" src="./assets/images/icons/GitHub-Mark-64px.png" alt="GitHub Profile">
+            <div class="profile-link-hover-banner sparkley" name="GitHub"> <!-- name attr for :hover::before content -->
+              <img class="profile-link-icon" src="./assets/images/icons/GitHub-Mark-64px.png" alt="GitHub Profile">
+              <div class="profile-link-hover-banner-text">GitHub</div>
+            </div>
           </a>
           <img class="link-new-tab-icon hover-motion-child" src="./assets/images/icons/new-tab-arrow.png" alt="Opens in new tab">
         </div>
+
+        <div class="profile-link-wrapper hover-motion-parent">
+          <a href="https://www.linkedin.com/in/mark-mendez-35464a46/" target="_blank" class="no-underline-anchor">
+            <img class="profile-link-icon hide-if-hover" src="./assets/images/icons/LI-In-Bug.png" alt="LinkedIn Profile">
+            <div class="profile-link-hover-banner sparkley" name="LinkedIn">
+              <img class="profile-link-icon" src="./assets/images/icons/LI-In-Bug.png" alt="LinkedIn Profile">
+              <div class="profile-link-hover-banner-text">LinkedIn</div>
+            </div>
+          </a>
+          <img class="link-new-tab-icon hover-motion-child" src="./assets/images/icons/new-tab-arrow.png" alt="Opens in new tab">
+        </div>
+
       </section>
     </header>
-    <main class="main-content-wrapper">
+    <main class="main-content-wrapper themed-card themed-padding-large">
       <nav class="home-nav">
         <h3 class="section-header">Web Projects</h3>
         <ul>
           <li>
             <div class="home-item-title-container">
-              <h4>Database Showcase (WIP) - 2022</h4>
+              <h4>Database Showcase - 2022</h4>
             </div>
             <div class="tag-grouper">
               <p class="language-tag">React.js</p><p class="language-tag">JavaScript</p><p class="language-tag">SQL</p>
             </div>
             <div class="link-grouper">
               <a target="_blank" href="https://drum-machine-340.herokuapp.com/management">
-                Visit Drum Machine 340 (WIP)</a>
+                Visit Drum Machine 340</a>
             </div>
             <p>
               Drum Machine 340 is a UI for the database administrator of an app similar to <a target="_blank" href="https://midi.city">midi.city</a>. As the portfolio project for my databases class, this project is mostly focused on transactions and relational entity design. Code snippets will be available soon.
